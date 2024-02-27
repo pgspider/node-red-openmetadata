@@ -1,0 +1,936 @@
+[
+    {
+        "id": "9d8f82fbe17602f6",
+        "type": "tab",
+        "label": "get_database_service_by_name",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c269b6a547ef0dc3",
+        "type": "group",
+        "z": "9d8f82fbe17602f6",
+        "name": "",
+        "style": {
+            "stroke": "#0070c0",
+            "label": true
+        },
+        "nodes": [
+            "c08bded613433d88",
+            "b4adc02c97b028f5",
+            "d49d35738650d349",
+            "7e41996852668aa6",
+            "d3f12a580c94b167",
+            "443f1ee13aac7b92",
+            "5a06e0fedc1b81be",
+            "901457417e2776d9",
+            "b40e9fe194937e1f",
+            "f66b06704eacc72e",
+            "93f7ac0d50c89787",
+            "e7416880b0edf234"
+        ],
+        "x": 234,
+        "y": 139,
+        "w": 1132,
+        "h": 262
+    },
+    {
+        "id": "b82b4dfb9881a2c8",
+        "type": "group",
+        "z": "9d8f82fbe17602f6",
+        "name": "",
+        "style": {
+            "stroke": "#0070c0",
+            "label": true
+        },
+        "nodes": [
+            "c630f4b84d9120e3",
+            "def4541c10ba148f",
+            "93f1b77bbb455420",
+            "0ccf9f4153084572",
+            "6601bec4eb6d005e",
+            "875eccd52a26e1ab",
+            "e97247de9f102dc7",
+            "9f8e357d91e90131",
+            "f384033a3a02bded",
+            "aadcac249145cbe7",
+            "7958bfa07fe2bfbd"
+        ],
+        "x": 234,
+        "y": 499,
+        "w": 1132,
+        "h": 322
+    },
+    {
+        "id": "a969f4de7f4aa763",
+        "type": "group",
+        "z": "9d8f82fbe17602f6",
+        "name": "",
+        "style": {
+            "stroke": "#0070c0",
+            "label": true
+        },
+        "nodes": [
+            "e18bd6ae2795190a",
+            "44ca5d9cc1b471f7",
+            "99bf9feceedd80f8",
+            "a0bd96eaf27d03b1",
+            "653dc1d2263bc1a4",
+            "ccf32c7ac765cbc0",
+            "4283f31e77d5efe3",
+            "db7c9af92a6a6868",
+            "b5cd103523881821",
+            "1e51fb69bef475a2",
+            "631b64f88727e7bb"
+        ],
+        "x": 234,
+        "y": 939,
+        "w": 1152,
+        "h": 222
+    },
+    {
+        "id": "94654493d84ee78c",
+        "type": "comment",
+        "z": "9d8f82fbe17602f6",
+        "name": "Test suite: Get database service by name",
+        "info": "",
+        "x": 200,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "c08bded613433d88",
+        "type": "test inject",
+        "z": "9d8f82fbe17602f6",
+        "g": "c269b6a547ef0dc3",
+        "name": "",
+        "onstart": false,
+        "tests": "return [{\n\tlabel: 'test 1',\n\tassert: function (msg) {\n        // msg.result === msg.expected;\n\t\tshould(msg.result).is.exactly(msg.expected);\n\t}\n}];",
+        "x": 420,
+        "y": 280,
+        "wires": [
+            [
+                "93f7ac0d50c89787"
+            ]
+        ]
+    },
+    {
+        "id": "b4adc02c97b028f5",
+        "type": "assert",
+        "z": "9d8f82fbe17602f6",
+        "g": "c269b6a547ef0dc3",
+        "name": "",
+        "x": 1290,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d49d35738650d349",
+        "type": "change",
+        "z": "9d8f82fbe17602f6",
+        "g": "c269b6a547ef0dc3",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "result",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 360,
+        "wires": [
+            [
+                "901457417e2776d9"
+            ]
+        ]
+    },
+    {
+        "id": "7e41996852668aa6",
+        "type": "comment",
+        "z": "9d8f82fbe17602f6",
+        "g": "c269b6a547ef0dc3",
+        "name": "Actual result from openmetadata node",
+        "info": "",
+        "x": 670,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "d3f12a580c94b167",
+        "type": "complete",
+        "z": "9d8f82fbe17602f6",
+        "g": "c269b6a547ef0dc3",
+        "name": "",
+        "scope": [
+            "c08bded613433d88"
+        ],
+        "uncaught": false,
+        "x": 430,
+        "y": 360,
+        "wires": [
+            [
+                "c630f4b84d9120e3"
+            ]
+        ]
+    },
+    {
+        "id": "443f1ee13aac7b92",
+        "type": "comment",
+        "z": "9d8f82fbe17602f6",
+        "g": "c269b6a547ef0dc3",
+        "name": "TC05:Get database service by name by specified name",
+        "info": " 1. Input: \n - name: \"PGSpider\"\n\n 2. Expected: Return database service \"PGSpider\"",
+        "x": 460,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "5a06e0fedc1b81be",
+        "type": "change",
+        "z": "9d8f82fbe17602f6",
+        "g": "c269b6a547ef0dc3",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "expected",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1030,
+        "y": 360,
+        "wires": [
+            [
+                "b4adc02c97b028f5"
+            ]
+        ]
+    },
+    {
+        "id": "901457417e2776d9",
+        "type": "http request",
+        "z": "9d8f82fbe17602f6",
+        "g": "c269b6a547ef0dc3",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://10.0.2.15:8585/api/v1/services/databaseServices/name/PGSpider",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "bearer",
+        "senderr": false,
+        "headers": [],
+        "x": 1010,
+        "y": 280,
+        "wires": [
+            [
+                "b40e9fe194937e1f"
+            ]
+        ]
+    },
+    {
+        "id": "b40e9fe194937e1f",
+        "type": "json",
+        "z": "9d8f82fbe17602f6",
+        "g": "c269b6a547ef0dc3",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 990,
+        "y": 320,
+        "wires": [
+            [
+                "5a06e0fedc1b81be"
+            ]
+        ]
+    },
+    {
+        "id": "f66b06704eacc72e",
+        "type": "json",
+        "z": "9d8f82fbe17602f6",
+        "g": "c269b6a547ef0dc3",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 650,
+        "y": 320,
+        "wires": [
+            [
+                "d49d35738650d349"
+            ]
+        ]
+    },
+    {
+        "id": "93f7ac0d50c89787",
+        "type": "openmetadata",
+        "z": "9d8f82fbe17602f6",
+        "g": "c269b6a547ef0dc3",
+        "nodename": "",
+        "openMetadataConfig": "ed60dcee1fc8d735",
+        "resource": "get_database_service_by_name",
+        "showOptParams": true,
+        "q": "*",
+        "name": "PGSpider",
+        "id_param": "#",
+        "fqn": "postgres.test",
+        "startTs": "1",
+        "endTs": "10",
+        "index": "table_search_index",
+        "deleted": "false",
+        "from": 0,
+        "size": 10,
+        "sort_field": "_score",
+        "sort_order": "desc",
+        "track_total_hits": "false",
+        "query_filter": "",
+        "post_filter": "",
+        "fetch_source": "true",
+        "include_source_fields": "",
+        "parent": "",
+        "fields": "",
+        "domain": "",
+        "service": "",
+        "database": "",
+        "disabled": "",
+        "databaseSchema": "",
+        "includeEmptyTestSuite": "true",
+        "limit": 10,
+        "before": "",
+        "after": "",
+        "include": "",
+        "qFieldType": "str",
+        "nameFieldType": "str",
+        "id_paramFieldType": "str",
+        "fqnFieldType": "str",
+        "startTsFieldType": "num",
+        "endTsFieldType": "num",
+        "indexFieldType": "str",
+        "deletedFieldType": "bool",
+        "fromFieldType": "num",
+        "sizeFieldType": "num",
+        "sort_fieldFieldType": "str",
+        "sort_orderFieldType": "str",
+        "track_total_hitsFieldType": "bool",
+        "query_filterFieldType": "str",
+        "post_filterFieldType": "str",
+        "fetch_sourceFieldType": "bool",
+        "include_source_fieldsFieldType": "str",
+        "parentFieldType": "str",
+        "fieldsFieldType": "str",
+        "domainFieldType": "str",
+        "serviceFieldType": "str",
+        "databaseFieldType": "str",
+        "disabledFieldType": "str",
+        "databaseSchemaFieldType": "str",
+        "includeEmptyTestSuiteFieldType": "bool",
+        "limitFieldType": "num",
+        "beforeFieldType": "str",
+        "afterFieldType": "str",
+        "includeFieldType": "str",
+        "x": 680,
+        "y": 280,
+        "wires": [
+            [
+                "f66b06704eacc72e"
+            ]
+        ]
+    },
+    {
+        "id": "e7416880b0edf234",
+        "type": "comment",
+        "z": "9d8f82fbe17602f6",
+        "g": "c269b6a547ef0dc3",
+        "name": "Expected result from REST API",
+        "info": "",
+        "x": 1030,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "c630f4b84d9120e3",
+        "type": "test inject",
+        "z": "9d8f82fbe17602f6",
+        "g": "b82b4dfb9881a2c8",
+        "name": "",
+        "onstart": false,
+        "tests": "return [{\n\tlabel: 'test 1',\n\tassert: function (msg) {\n        // msg.result === msg.expected;\n\t\tshould(msg.result).is.exactly(msg.expected);\n\t}\n}];",
+        "x": 440,
+        "y": 640,
+        "wires": [
+            [
+                "e97247de9f102dc7"
+            ]
+        ]
+    },
+    {
+        "id": "def4541c10ba148f",
+        "type": "assert",
+        "z": "9d8f82fbe17602f6",
+        "g": "b82b4dfb9881a2c8",
+        "name": "",
+        "x": 1290,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "93f1b77bbb455420",
+        "type": "change",
+        "z": "9d8f82fbe17602f6",
+        "g": "b82b4dfb9881a2c8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "result",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 720,
+        "y": 780,
+        "wires": [
+            [
+                "9f8e357d91e90131"
+            ]
+        ]
+    },
+    {
+        "id": "0ccf9f4153084572",
+        "type": "comment",
+        "z": "9d8f82fbe17602f6",
+        "g": "b82b4dfb9881a2c8",
+        "name": "Actual result from openmetadata node",
+        "info": "",
+        "x": 750,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "6601bec4eb6d005e",
+        "type": "complete",
+        "z": "9d8f82fbe17602f6",
+        "g": "b82b4dfb9881a2c8",
+        "name": "",
+        "scope": [
+            "c630f4b84d9120e3"
+        ],
+        "uncaught": false,
+        "x": 450,
+        "y": 740,
+        "wires": [
+            [
+                "e18bd6ae2795190a"
+            ]
+        ]
+    },
+    {
+        "id": "875eccd52a26e1ab",
+        "type": "comment",
+        "z": "9d8f82fbe17602f6",
+        "g": "b82b4dfb9881a2c8",
+        "name": "TC06: List database service with service name not exist",
+        "info": " 1. Input: \n - name: \"example\"\n\n 2. Expected: Show error message\nAPI error 404: databaseService instance for example not found",
+        "x": 460,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "e97247de9f102dc7",
+        "type": "openmetadata",
+        "z": "9d8f82fbe17602f6",
+        "g": "b82b4dfb9881a2c8",
+        "nodename": "",
+        "openMetadataConfig": "ed60dcee1fc8d735",
+        "resource": "get_database_service_by_name",
+        "showOptParams": true,
+        "q": "*",
+        "name": "example",
+        "id_param": "#",
+        "fqn": "postgres.test",
+        "startTs": "1",
+        "endTs": "10",
+        "index": "table_search_index",
+        "deleted": "false",
+        "from": 0,
+        "size": 10,
+        "sort_field": "_score",
+        "sort_order": "desc",
+        "track_total_hits": "false",
+        "query_filter": "",
+        "post_filter": "",
+        "fetch_source": "true",
+        "include_source_fields": "",
+        "parent": "",
+        "fields": "",
+        "domain": "",
+        "service": "",
+        "database": "",
+        "disabled": "",
+        "databaseSchema": "",
+        "includeEmptyTestSuite": "true",
+        "limit": "10",
+        "before": "",
+        "after": "",
+        "include": "",
+        "qFieldType": "str",
+        "nameFieldType": "str",
+        "id_paramFieldType": "str",
+        "fqnFieldType": "str",
+        "startTsFieldType": "num",
+        "endTsFieldType": "num",
+        "indexFieldType": "str",
+        "deletedFieldType": "bool",
+        "fromFieldType": "num",
+        "sizeFieldType": "num",
+        "sort_fieldFieldType": "str",
+        "sort_orderFieldType": "str",
+        "track_total_hitsFieldType": "bool",
+        "query_filterFieldType": "str",
+        "post_filterFieldType": "str",
+        "fetch_sourceFieldType": "bool",
+        "include_source_fieldsFieldType": "str",
+        "parentFieldType": "str",
+        "fieldsFieldType": "str",
+        "domainFieldType": "str",
+        "serviceFieldType": "str",
+        "databaseFieldType": "str",
+        "disabledFieldType": "str",
+        "databaseSchemaFieldType": "str",
+        "includeEmptyTestSuiteFieldType": "bool",
+        "limitFieldType": "num",
+        "beforeFieldType": "str",
+        "afterFieldType": "str",
+        "includeFieldType": "str",
+        "x": 720,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9f8e357d91e90131",
+        "type": "change",
+        "z": "9d8f82fbe17602f6",
+        "g": "b82b4dfb9881a2c8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "expected",
+                "pt": "msg",
+                "to": "API error 404: databaseService instance for example not found",
+                "tot": "str",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1030,
+        "y": 740,
+        "wires": [
+            [
+                "def4541c10ba148f"
+            ]
+        ]
+    },
+    {
+        "id": "f384033a3a02bded",
+        "type": "comment",
+        "z": "9d8f82fbe17602f6",
+        "g": "b82b4dfb9881a2c8",
+        "name": "Expected result from REST API",
+        "info": "",
+        "x": 1070,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "aadcac249145cbe7",
+        "type": "function",
+        "z": "9d8f82fbe17602f6",
+        "g": "b82b4dfb9881a2c8",
+        "name": "get error message",
+        "func": "msg.payload = msg.error.message;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 740,
+        "wires": [
+            [
+                "93f1b77bbb455420"
+            ]
+        ]
+    },
+    {
+        "id": "7958bfa07fe2bfbd",
+        "type": "catch",
+        "z": "9d8f82fbe17602f6",
+        "g": "b82b4dfb9881a2c8",
+        "name": "",
+        "scope": [
+            "e97247de9f102dc7"
+        ],
+        "uncaught": false,
+        "x": 690,
+        "y": 700,
+        "wires": [
+            [
+                "aadcac249145cbe7"
+            ]
+        ]
+    },
+    {
+        "id": "e18bd6ae2795190a",
+        "type": "test inject",
+        "z": "9d8f82fbe17602f6",
+        "g": "a969f4de7f4aa763",
+        "name": "",
+        "onstart": false,
+        "tests": "return [{\n\tlabel: 'test 1',\n\tassert: function (msg) {\n        // msg.result === msg.expected;\n\t\tshould(msg.name).is.exactly(msg.nameExpected);\n\t\tshould(msg.owner).is.exactly(msg.ownerExpected);\n\t}\n}];",
+        "x": 440,
+        "y": 1040,
+        "wires": [
+            [
+                "4283f31e77d5efe3"
+            ]
+        ]
+    },
+    {
+        "id": "44ca5d9cc1b471f7",
+        "type": "json",
+        "z": "9d8f82fbe17602f6",
+        "g": "a969f4de7f4aa763",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 750,
+        "y": 1080,
+        "wires": [
+            [
+                "a0bd96eaf27d03b1"
+            ]
+        ]
+    },
+    {
+        "id": "99bf9feceedd80f8",
+        "type": "assert",
+        "z": "9d8f82fbe17602f6",
+        "g": "a969f4de7f4aa763",
+        "name": "",
+        "x": 1310,
+        "y": 1060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a0bd96eaf27d03b1",
+        "type": "change",
+        "z": "9d8f82fbe17602f6",
+        "g": "a969f4de7f4aa763",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "name",
+                "pt": "msg",
+                "to": "payload.name",
+                "tot": "msg",
+                "dc": true
+            },
+            {
+                "t": "set",
+                "p": "owner",
+                "pt": "msg",
+                "to": "payload.owner",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 1120,
+        "wires": [
+            [
+                "b5cd103523881821"
+            ]
+        ]
+    },
+    {
+        "id": "653dc1d2263bc1a4",
+        "type": "comment",
+        "z": "9d8f82fbe17602f6",
+        "g": "a969f4de7f4aa763",
+        "name": "Actual result from openmetadata node",
+        "info": "",
+        "x": 850,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "ccf32c7ac765cbc0",
+        "type": "comment",
+        "z": "9d8f82fbe17602f6",
+        "g": "a969f4de7f4aa763",
+        "name": "TC07: List database service with all parameters input",
+        "info": " 1. Input: \n - name: \"PostgreSQL\"\n - fields: \"owner\"\n - include: \"all\"\n\n 2. Expected: Return service \"PostgreSQL\" and with more field \"owner\"",
+        "x": 450,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "4283f31e77d5efe3",
+        "type": "openmetadata",
+        "z": "9d8f82fbe17602f6",
+        "g": "a969f4de7f4aa763",
+        "nodename": "",
+        "openMetadataConfig": "ed60dcee1fc8d735",
+        "resource": "get_database_service_by_name",
+        "showOptParams": true,
+        "q": "*",
+        "name": "PostgreSQL",
+        "id_param": "#",
+        "fqn": "postgres.test",
+        "startTs": "1",
+        "endTs": "10",
+        "index": "table_search_index",
+        "deleted": "false",
+        "from": 0,
+        "size": 10,
+        "sort_field": "_score",
+        "sort_order": "desc",
+        "track_total_hits": "false",
+        "query_filter": "",
+        "post_filter": "",
+        "fetch_source": "true",
+        "include_source_fields": "",
+        "parent": "",
+        "fields": "owner",
+        "domain": "",
+        "service": "",
+        "database": "",
+        "disabled": "",
+        "databaseSchema": "",
+        "includeEmptyTestSuite": "true",
+        "limit": "10",
+        "before": "",
+        "after": "",
+        "include": "all",
+        "qFieldType": "str",
+        "nameFieldType": "str",
+        "id_paramFieldType": "str",
+        "fqnFieldType": "str",
+        "startTsFieldType": "num",
+        "endTsFieldType": "num",
+        "indexFieldType": "str",
+        "deletedFieldType": "bool",
+        "fromFieldType": "num",
+        "sizeFieldType": "num",
+        "sort_fieldFieldType": "str",
+        "sort_orderFieldType": "str",
+        "track_total_hitsFieldType": "bool",
+        "query_filterFieldType": "str",
+        "post_filterFieldType": "str",
+        "fetch_sourceFieldType": "bool",
+        "include_source_fieldsFieldType": "str",
+        "parentFieldType": "str",
+        "fieldsFieldType": "str",
+        "domainFieldType": "str",
+        "serviceFieldType": "str",
+        "databaseFieldType": "str",
+        "disabledFieldType": "str",
+        "databaseSchemaFieldType": "str",
+        "includeEmptyTestSuiteFieldType": "bool",
+        "limitFieldType": "num",
+        "beforeFieldType": "str",
+        "afterFieldType": "str",
+        "includeFieldType": "str",
+        "x": 780,
+        "y": 1040,
+        "wires": [
+            [
+                "44ca5d9cc1b471f7"
+            ]
+        ]
+    },
+    {
+        "id": "db7c9af92a6a6868",
+        "type": "change",
+        "z": "9d8f82fbe17602f6",
+        "g": "a969f4de7f4aa763",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nameExpected",
+                "pt": "msg",
+                "to": "payload.name",
+                "tot": "msg",
+                "dc": true
+            },
+            {
+                "t": "set",
+                "p": "ownerExpected",
+                "pt": "msg",
+                "to": "payload.owner",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1100,
+        "y": 1120,
+        "wires": [
+            [
+                "99bf9feceedd80f8"
+            ]
+        ]
+    },
+    {
+        "id": "b5cd103523881821",
+        "type": "http request",
+        "z": "9d8f82fbe17602f6",
+        "g": "a969f4de7f4aa763",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://10.0.2.15:8585/api/v1/services/databaseServices/name/PostgreSQL?fields=owner&include=all",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "bearer",
+        "senderr": false,
+        "headers": [],
+        "x": 1090,
+        "y": 1040,
+        "wires": [
+            [
+                "1e51fb69bef475a2"
+            ]
+        ]
+    },
+    {
+        "id": "1e51fb69bef475a2",
+        "type": "json",
+        "z": "9d8f82fbe17602f6",
+        "g": "a969f4de7f4aa763",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 1070,
+        "y": 1080,
+        "wires": [
+            [
+                "db7c9af92a6a6868"
+            ]
+        ]
+    },
+    {
+        "id": "631b64f88727e7bb",
+        "type": "comment",
+        "z": "9d8f82fbe17602f6",
+        "g": "a969f4de7f4aa763",
+        "name": "Expected result from REST API",
+        "info": "",
+        "x": 1150,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "2c3443c55b2af1e6",
+        "type": "inject",
+        "z": "9d8f82fbe17602f6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 240,
+        "wires": [
+            [
+                "c08bded613433d88"
+            ]
+        ]
+    },
+    {
+        "id": "ed60dcee1fc8d735",
+        "type": "openMetadataConfig",
+        "name": "token",
+        "endpoint": "http://10.0.2.15:8585/api/v1/",
+        "endpointFieldType": "str",
+        "user": "",
+        "userFieldType": "str",
+        "password": "",
+        "passwordFieldType": "str",
+        "tokenInput": "eyJraWQiOiJHYjM4OWEtOWY3Ni1nZGpzLWE5MmotMDI0MmJrOTQzNTYiLCJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJvcGVuLW1ldGFkYXRhLm9yZyIsInN1YiI6ImluZ2VzdGlvbi1ib3QiLCJlbWFpbCI6ImluZ2VzdGlvbi1ib3RAb3Blbm1ldGFkYXRhLm9yZyIsImlzQm90Ijp0cnVlLCJ0b2tlblR5cGUiOiJCT1QiLCJpYXQiOjE3MDI5NTM1MTYsImV4cCI6bnVsbH0.ysLDuWqsA8TA5TqwPp0cm8kLu0yQc-RbYBMyMGSY-JCtgR1zRAKpjhAczzFcMHQgXbCGtoXZGE4-OgWDXBoHFFeUXlYxCOFXJOz6K3xPgWM0u6OM0xRYAVGzqpWPzZDO0Wgg5dEV_j86pjCYq4EOuLwGHXhKoFwIi_ezwj8jeUBsmLy0SnaHhE1T4u_hcoikNOVOwpsNq7k9EJigLuIvftfZJacWAzAsNJkwVQymdNNufimUsI4CeZYIowgpYQV2EAoxOBOrnUUeyBx49nmAJAMqbqIzl_rP8KW1EL---Q_mYaHL1o0Qc06JufkpTf3Ir5--CnVZZjEyfYQjJI0jCg",
+        "tokenInputFieldType": "str",
+        "token": "",
+        "proxy": "",
+        "proxyFieldType": "str",
+        "noproxy": false
+    }
+]

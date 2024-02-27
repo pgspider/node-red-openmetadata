@@ -1,0 +1,254 @@
+{
+	"openmetadata": {
+		"resource": {
+			"search_entities": "Search entities",
+			"list_database_services": "List database services",
+			"get_database_service_by_name": "Get database service by name",
+			"get_a_database_service": "Get a database service",
+			"list_databases": "List databases",
+			"get_a_database_by_id": "Get a database by Id",
+			"list_database_schemas": "List database schemas",
+			"get_a_schema_by_id": "Get a schema by Id",
+			"list_tags": "List tags",
+			"list_tables": "List tables",
+			"list_of_column_profiles": "List of column profiles",
+			"list_of_table_profiles": "List of table profiles",
+			"get_a_table_by_id": "Get a table by Id",
+			"get_sample_data": "Get sample data"
+		},
+		"label": {
+			"nodename": "Node Name",
+			"endpoint": "Endpoint",
+			"user": "User",
+			"password": "Password",
+			"token": "Token",
+			"proxy": "Proxy",
+			"noproxy": "No proxy",
+			"server": "Server",
+			"resource": "Resource",
+			"showOptParams": "Show optional params",
+			"fields": "fields",
+			"limit": "limit",
+			"before": "before",
+			"after": "after",
+			"include": "include",
+			"name": "name",
+			"id_param": "id",
+			"fqn": "fqn",
+			"startTs": "startTs",
+			"endTs": "endTs",
+			"search_entities": {
+				"q": "q",
+				"index": "index",
+				"deleted": "deleted",
+				"from": "from",
+				"size": "size",
+				"sort_field": "sort_field",
+				"sort_order": "sort_order",
+				"track_total_hits": "track_total_hits",
+				"query_filter": "query_filter",
+				"post_filter": "post_filter",
+				"fetch_source": "fetch_source",
+				"include_source_fields": "include_source_fields"
+			},
+			"list_database_services": {
+				"domain": "domain"
+			},
+			"get_database_service_by_name": {},
+			"get_a_database_service": {},
+			"list_databases": {
+				"service": "service"
+			},
+			"get_a_database_by_id": {},
+			"list_database_schemas": {
+				"database": "database"
+			},
+			"get_a_schema_by_id": {},
+			"list_tags": {
+				"parent": "parent",
+				"disabled": "disabled"
+			},
+			"list_tables": {
+				"databaseSchema": "databaseSchema",
+				"includeEmptyTestSuite": "includeEmptyTestSuite"
+			},
+			"list_of_column_profiles": {},
+			"list_of_table_profiles": {},
+			"get_a_table_by_id": {},
+			"get_sample_data": {}
+		},
+		"explanation": {
+			"config": {
+				"nodename": "Name of OpenMetadata Config node",
+				"endpoint": "Endpoint of OpenMetadata server",
+				"user": "Username to login to OpenMetadata server",
+				"password": "Password to login to OpenMetadata server ",
+				"token": "Token to login to OpenMetadata server",
+				"proxy": "Options for curl to access web resource",
+				"noproxy": "Options for curl to access web resource"
+			},
+			"nodename": "Name of OpenMetadata node",
+			"server": "Name of OpenMetadata Config node, required",
+			"resource": "The list of supported OpenMetadata API. User can choose resource of OpenMetadata by drop-down menu.",
+			"showOptParams": "Show optional parameters of selected API or not",
+			"fields": "Fields requested in the returned resource",
+			"include": "Include all, deleted, or non-deleted entities, default to non-deleted",
+			"search_entities": {
+				"q": "Search Query Text, defaults to '*', required",
+				"index": "ElasticSearch Index name, defaults to table_search_index",
+				"deleted": "Filter documents by deleted param, defaults to false",
+				"from": "From field to paginate the results, defaults to 0",
+				"size": "Size field to limit the no.of results returned, defaults to 10",
+				"sort_field": "Sort the search results by field, available fields to sort weekly_stats , daily_stats, monthly_stats, last_updated_timestamp, defaults to '_score'",
+				"sort_order": "Sort order asc for ascending or desc for descending, defaults to desc",
+				"track_total_hits": "Track Total Hits, defaults to false",
+				"query_filter": "Elasticsearch query that will be combined with the query_string query generator from the query argument",
+				"post_filter": "Elasticsearch query that will be used as a post_filter",
+				"fetch_source": "Get document body for each hit, defaults to true",
+				"include_source_fields": "Get only selected fields of the document body for each hit. Empty value will return all fields"
+			},
+			"list_database_services": {
+				"limit": "Limit the number database services returned, value in [0, 1000000], defaults to 10",
+				"before": "Returns list of database services before this cursor",
+				"after": "Returns list of database services after this cursor",
+				"domain": "Filter services by domain"
+			},
+			"get_database_service_by_name": {
+				"name": "Name of the database service, required"
+			},
+			"get_a_database_service": {
+				"id_param": "Id of the database service, required"
+			},
+			"list_databases": {
+				"service": "Filter databases by service name",
+				"limit": "Limit the number databases returned, value in [0, 1000000], defaults to 10",
+				"before": "Returns list of databases before this cursor",
+				"after": "Returns list of databases after this cursor"
+			},
+			"get_a_database_by_id": {
+				"id_param": "Id of the database, required"
+			},
+			"list_database_schemas": {
+				"database": "Filter schemas by database name",
+				"limit": "Limit the number schemas returned, value in [0, 1000000], defaults to 10",
+				"before": "Returns list of schemas before this cursor",
+				"after": "Returns list of schemas after this cursor"
+			},
+			"get_a_schema_by_id": {
+				"id_param": "Database schema Id"
+			},
+			"list_tags": {
+				"parent": "List tags filtered by children of tag identified by fqn given in parent parameter. \nThe fqn can either be classificationName or fqn of a parent tag",
+				"disabled": "Filter Disabled Classifications, default to false",
+				"limit": "Limit the number tags returned, value in [0, 1000000], defaults to 10",
+				"before": "Returns list of tags before this cursor",
+				"after": "Returns list of tags after this cursor"
+			},
+			"list_tables": {
+				"database": "Filter tables by database fully qualified name",
+				"databaseSchema": "Filter tables by databaseSchema fully qualified name",
+				"includeEmptyTestSuite": "Include tables with an empty test suite (i.e. no test cases have been created for this table). Default to true",
+				"limit": "Limit the number tables returned, value in [0, 1000000], defaults to 10",
+				"before": "Returns list of tables before this cursor",
+				"after": "Returns list of tables after this cursor"
+			},
+			"list_of_column_profiles": {
+				"fqn": "FQN of the column",
+				"startTs": "Filter table/column profiles after the given start timestamp",
+				"endTs": "Filter table/column profiles before the given end timestamp"
+			},
+			"list_of_table_profiles": {
+				"fqn": "FQN of the table or column",
+				"startTs": "Filter table/column profiles after the given start timestamp",
+				"endTs": "Filter table/column profiles before the given end timestamp"
+			},
+			"get_a_table_by_id": {
+				"id_param": "Table ID"
+			},
+			"get_sample_data": {
+				"id_param": "Id of the table"
+			}
+		},
+		"message": {
+			"authentication": "Either one of User&Password or Token must be specified.\n If both User, Password & Token are specified, Token is prioritized."
+		},
+		"placeholder": {
+			"endpoint": "http://10.0.2.15:8585/api/v1/",
+			"user": "userName",
+			"password": "password",
+			"token": "",
+			"proxy": "http://proxy:port",
+			"nodename": "Node Name",
+			"fields": "pipelines,owner,tags",
+			"limit": "10",
+			"before": "before",
+			"after": "after",
+			"include": "non-deleted",
+			"id_param": "id",
+			"search_entities": {
+				"q": "*",
+				"index": "table_search_index",
+				"deleted": "false",
+				"from": "0",
+				"size": "10",
+				"sort_field": "_score",
+				"sort_order": "desc",
+				"track_total_hits": "false",
+				"query_filter": "query_filter",
+				"post_filter": "post_filter",
+				"fetch_source": "true",
+				"include_source_fields": "[\"value1\", \"value2\"]"
+			},
+			"list_database_services": {
+				"fields": "pipelines,owner,tags",
+				"domain": "Marketing"
+			},
+			"get_database_service_by_name": {
+				"name": "name",
+				"fields": "pipelines,owner,tags"
+			},
+			"get_a_database_service": {
+				"fields": "pipelines,owner,tags"
+			},
+			"list_databases": {
+				"fields": "databaseSchemas,usageSummary",
+				"service": "snowflakeWestCoast"
+			},
+			"get_a_database_by_id": {
+				"fields": "databaseSchemas,usageSummary,tags"
+			},
+			"list_database_schemas": {
+				"fields": "tables,usageSummary,tags",
+				"database": "customerDatabase"
+			},
+			"get_a_schema_by_id": {
+				"fields": "tables,usageSummary,tags"
+			},
+			"list_tags": {
+				"parent": "children, usageCount",
+				"fields": "children, usageCount",
+				"disabled": "children, usageCount"
+			},
+			"list_tables": {
+				"fields": "tableConstraints,usageSummary,owner",
+				"database": "snowflakeWestCoast.financeDB",
+				"databaseSchema": "snowflakeWestCoast.financeDB.schema",
+				"includeEmptyTestSuite": "true"
+			},
+			"list_of_column_profiles": {
+				"fqn": "fqn",
+				"startTs": "startTs",
+				"endTs": "endTs"
+			},
+			"list_of_table_profiles": {
+				"fqn": "fqn",
+				"startTs": "startTs",
+				"endTs": "endTs"
+			},
+			"get_a_table_by_id": {
+				"fields": "tableConstraints,usageSummary"
+			},
+			"get_sample_data": {}
+		}
+	}
+}

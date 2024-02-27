@@ -1,0 +1,254 @@
+{
+	"openmetadata": {
+		"resource": {
+			"search_entities": "エンティティの検索",
+			"list_database_services": "データベースサービスをリストする",
+			"get_database_service_by_name": "データベース サービスを名前で取得する",
+			"get_a_database_service": "データベースサービスを取得する",
+			"list_databases": "データベースをリストする",
+			"get_a_database_by_id": "IDでデータベースを取得する",
+			"list_database_schemas": "データベーススキーマをリストする",
+			"get_a_schema_by_id": "IDでスキーマを取得する",
+			"list_tags": "タグをリストする",
+			"list_tables": "テーブルをリストする",
+			"list_of_column_profiles": "カラムプロファイルをリストする",
+			"list_of_table_profiles": "テーブルプロファイルをリストする",
+			"get_a_table_by_id": "IDでテーブルを取得する",
+			"get_sample_data": "サンプルデータを取得する"
+		},
+		"label": {
+			"nodename": "ノード名",
+			"endpoint": "エンドポイント",
+			"user": "ユーザ名",
+			"password": "パスワード",
+			"token": "トークン",
+			"proxy": "プロキシ",
+			"noproxy": "プロキシを使用しない",
+			"server": "サーバ",
+			"resource": "リソース",
+			"showOptParams": "オプションのパラメータを表示する",
+			"fields": "fields",
+			"limit": "limit",
+			"before": "before",
+			"after": "after",
+			"include": "include",
+			"name": "name",
+			"id_param": "id",
+			"fqn": "fqn",
+			"startTs": "startTs",
+			"endTs": "endTs",
+			"search_entities": {
+				"q": "q",
+				"index": "index",
+				"deleted": "deleted",
+				"from": "from",
+				"size": "size",
+				"sort_field": "sort_field",
+				"sort_order": "sort_order",
+				"track_total_hits": "track_total_hits",
+				"query_filter": "query_filter",
+				"post_filter": "post_filter",
+				"fetch_source": "fetch_source",
+				"include_source_fields": "include_source_fields"
+			},
+			"list_database_services": {
+				"domain": "domain"
+			},
+			"get_database_service_by_name": {},
+			"get_a_database_service": {},
+			"list_databases": {
+				"service": "service"
+			},
+			"get_a_database_by_id": {},
+			"list_database_schemas": {
+				"database": "database"
+			},
+			"get_a_schema_by_id": {},
+			"list_tags": {
+				"parent": "parent",
+				"disabled": "disabled"
+			},
+			"list_tables": {
+				"databaseSchema": "databaseSchema",
+				"includeEmptyTestSuite": "includeEmptyTestSuite"
+			},
+			"list_of_column_profiles": {},
+			"list_of_table_profiles": {},
+			"get_a_table_by_id": {},
+			"get_sample_data": {}
+		},
+		"explanation": {
+			"config": {
+				"nodename": "OpenMetadata 構成ノードの名前",
+				"endpoint": "OpenMetadata サーバーのエンドポイント",
+				"user": "OpenMetadata サーバーにログインするためのユーザー名",
+				"password": "OpenMetadata サーバーにログインするためのパスワード",
+				"token": "OpenMetadataサーバーにログインするためのトークン",
+				"proxy": "Webリソースにアクセスするためのcurlのオプション",
+				"noproxy": "Webリソースにアクセスするためのcurlのオプション"
+			},
+			"nodename": "OpenMetadataノードの名前",
+			"server": "OpenMetadata 構成ノードの名前 (必須)",
+			"resource": "OpenMetadataのサポートAPI一覧。ユーザーはドロップダウン メニューから OpenMetadata のリソースを選択可能。",
+			"showOptParams": "選択した API のオプションのパラメータを表示するかどうか",
+			"fields": "返されるリソースで要求されるフィールド",
+			"include": "すべてのエンティティ、削除されたエンティティ、削除されていないエンティティを組み込みます。デフォルトは削除されていないエンティティです。",
+			"search_entities": {
+				"q": "検索クエリテキスト、デフォルトは「*」、必須",
+				"index": "ElasticSearch インデックス名、デフォルトは table_search_index",
+				"deleted": "削除されたパラメータによってドキュメントをフィルタします。デフォルトは false",
+				"from": "結果をページ分割するための From フィールド、デフォルトは 0",
+				"size": "Size フィールドは返される結果の数を制限します。デフォルトは 10 です。",
+				"sort_field": "検索結果をフィールドで並べ替えます。並べ替えに使用できるフィールドは、 Weekly_stats 、 daily_stats、monthly_stats、last_updated_timestamp、デフォルトは「_score」です。",
+				"sort_order": "ソート順序は昇順の場合は asc、降順の場合は desc、デフォルトは desc です。",
+				"track_total_hits": "Track Total Hits、デフォルトは false",
+				"query_filter": "クエリ引数からの query_string クエリ ジェネレーターと結合される Elasticsearch クエリ",
+				"post_filter": "post_filter として使用される Elasticsearch クエリ",
+				"fetch_source": "ヒットにドキュメント本文を取得します。デフォルトは true です。",
+				"include_source_fields": "ヒットに、ドキュメント本文の選択されたフィールドのみを取得します。空の値はすべてのフィールドを返します。"
+			},
+			"list_database_services": {
+				"limit": "返されるデータベース サービスの数を制限します。値は [0, 1000000] で、デフォルトは 10 です。",
+				"before": "このカーソルの前のデータベース サービスのリストを返します。",
+				"after": "このカーソルの後のデータベース サービスのリストを返します。",
+				"domain": "ドメインにサービスをフィルタリングする"
+			},
+			"get_database_service_by_name": {
+				"name": "データベース サービスの名前、必須"
+			},
+			"get_a_database_service": {
+				"id_param": "データベース サービスの ID、必須"
+			},
+			"list_databases": {
+				"service": "サービス名でデータベースをフィルタする",
+				"limit": "返されるデータベースの数を制限します。 値は [0, 1000000] で、デフォルトは 10 です。",
+				"before": "このカーソルの前のデータベースのリストを返します。",
+				"after": "このカーソルの後のデータベースのリストを返します。"
+			},
+			"get_a_database_by_id": {
+				"id_param": "データベースの ID、必須"
+			},
+			"list_database_schemas": {
+				"database": "データベース名でスキーマをフィルタする",
+				"limit": "返されるスキーマの数を制限します。値は [0, 1000000] で、デフォルトは 10 です。",
+				"before": "このカーソルの前のスキーマのリストを返します。",
+				"after": "このカーソルの後のスキーマのリストを返します。"
+			},
+			"get_a_schema_by_id": {
+				"id_param": "データベーススキーマのID"
+			},
+			"list_tags": {
+				"parent": "親パラメータで指定された fqn によって識別されるタグの子によってフィルタされたタグをリストします。FQN は、classificationName または親タグの FQN のいずれかになります。",
+				"disabled": "Disabled Classificationsをフィルタします。デフォルトは false です。",
+				"limit": "返されるタグの数を制限します。値は [0, 1000000] で、デフォルトは 10 です。",
+				"before": "このカーソルの前のタグのリストを返します。",
+				"after": "このカーソルの後のタグのリストを返します"
+			},
+			"list_tables": {
+				"database": "データベースの完全修飾名でテーブルをフィルタリングする",
+				"databaseSchema": "データベーススキーマの完全修飾名でテーブルをフィルタする",
+				"includeEmptyTestSuite": "空のテスト スイートを含むテーブルを含めます (つまり、このテーブルにはテスト ケースが作成されていません)。 デフォルトは true",
+				"limit": "返されるテーブルの数を制限します。値は [0, 1000000] で、デフォルトは 10 です。",
+				"before": "このカーソルの前のテーブルのリストを返します。",
+				"after": "このカーソルの後のテーブルのリストを返します"
+			},
+			"list_of_column_profiles": {
+				"fqn": "カラムの FQN",
+				"startTs": "指定された開始タイムスタンプ以降のテーブル/カラムプロファイルをフィルターします。",
+				"endTs": "指定された終了タイムスタンプより前のテーブル/カラムプロファイルをフィルターします。"
+			},
+			"list_of_table_profiles": {
+				"fqn": "テーブル/カラムの FQN",
+				"startTs": "指定された開始タイムスタンプ以降のテーブル/カラムプロファイルをフィルターします。",
+				"endTs": "指定された開始タイムスタンプ以降のテーブル/カラムプロファイルをフィルターします。"
+			},
+			"get_a_table_by_id": {
+				"id_param": "テーブルID"
+			},
+			"get_sample_data": {
+				"id_param": "テーブルのID"
+			}
+		},
+		"message": {
+			"authentication": "ユーザー、パスワード、トークンのいずれかを指定する必要があります。 ユーザ名、パスワード、トークンを指定した場合はトークンが優先されます。"
+		},
+		"placeholder": {
+			"endpoint": "http://10.0.2.15:8585/api/v1/",
+			"user": "userName",
+			"password": "password",
+			"token": "",
+			"proxy": "http://proxy:port",
+			"nodename": "Node Name",
+			"fields": "pipelines,owner,tags",
+			"limit": "10",
+			"before": "before",
+			"after": "after",
+			"include": "non-deleted",
+			"id_param": "id",
+			"search_entities": {
+				"q": "*",
+				"index": "table_search_index",
+				"deleted": "false",
+				"from": "0",
+				"size": "10",
+				"sort_field": "_score",
+				"sort_order": "desc",
+				"track_total_hits": "false",
+				"query_filter": "query_filter",
+				"post_filter": "post_filter",
+				"fetch_source": "true",
+				"include_source_fields": "[\"value1\", \"value2\"]"
+			},
+			"list_database_services": {
+				"fields": "pipelines,owner,tags",
+				"domain": "Marketing"
+			},
+			"get_database_service_by_name": {
+				"name": "name",
+				"fields": "pipelines,owner,tags"
+			},
+			"get_a_database_service": {
+				"fields": "pipelines,owner,tags"
+			},
+			"list_databases": {
+				"fields": "databaseSchemas,usageSummary",
+				"service": "snowflakeWestCoast"
+			},
+			"get_a_database_by_id": {
+				"fields": "databaseSchemas,usageSummary,tags"
+			},
+			"list_database_schemas": {
+				"fields": "tables,usageSummary,tags",
+				"database": "customerDatabase"
+			},
+			"get_a_schema_by_id": {
+				"fields": "tables,usageSummary,tags"
+			},
+			"list_tags": {
+				"parent": "children, usageCount",
+				"fields": "children, usageCount",
+				"disabled": "children, usageCount"
+			},
+			"list_tables": {
+				"fields": "tableConstraints,usageSummary,owner",
+				"database": "snowflakeWestCoast.financeDB",
+				"databaseSchema": "snowflakeWestCoast.financeDB.schema",
+				"includeEmptyTestSuite": "true"
+			},
+			"list_of_column_profiles": {
+				"fqn": "fqn",
+				"startTs": "startTs",
+				"endTs": "endTs"
+			},
+			"list_of_table_profiles": {
+				"fqn": "fqn",
+				"startTs": "startTs",
+				"endTs": "endTs"
+			},
+			"get_a_table_by_id": {
+				"fields": "tableConstraints,usageSummary"
+			},
+			"get_sample_data": {}
+		}
+	}
+}

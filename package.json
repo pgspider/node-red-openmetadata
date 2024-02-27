@@ -1,0 +1,21 @@
+{
+	"name": "@pgspider/node-red-openmetadata",
+	"version": "1.0.0",
+	"description": "Node-RED node for calling OpenMetadata API",
+	"author": "Toshiba Corporation",
+	"license": "Apache-2.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/pgspider/node-red-openmetadata"
+	},
+	"node-red": {
+		"version": "^3.1.0",
+		"nodes": {
+			"openmetadata": "openmetadata.js"
+		}
+	},
+	"dependencies": {
+		"got": "^12.6.0",
+		"hpagent": "^1.2.0"
+	}
+}

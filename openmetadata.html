@@ -1,0 +1,908 @@
+<style>
+	.form-row > label.form-row-config-parameter {
+		width: 120px;
+	}
+	.form-row > label.form-row-parameter {
+		width: 165px;
+	}
+</style>
+
+<script type="text/x-red" data-template-name="openMetadataConfig">
+	<div class="form-row">
+		<label data-i18n="[title]openmetadata.explanation.config.nodename" for="node-config-input-name" class="form-row-config-parameter">
+			<i class="fa fa-tag"></i>
+			<span data-i18n="openmetadata.label.nodename"></span>
+		</label>
+		<input type="text" id="node-config-input-name" data-i18n="[placeholder]openmetadata.placeholder.nodename" />
+	</div>
+	<div class="form-row">
+		<label data-i18n="[title]openmetadata.explanation.config.endpoint" for="node-config-input-endpoint" class="form-row-config-parameter">
+			<i class="fa fa-etsy"></i>
+			<span data-i18n="openmetadata.label.endpoint"></span>
+		</label>
+		<input type="text" id="node-config-input-endpoint" data-i18n="[placeholder]openmetadata.placeholder.endpoint" style="width: 70%;" />
+		<input type="hidden" id="node-config-input-endpointFieldType" />
+	</div>
+	<div class="form-row">
+		<label data-i18n="[title]openmetadata.explanation.config.user" for="node-config-input-user" class="form-row-config-parameter">
+			<i class="fa fa-user"></i>
+			<span data-i18n="openmetadata.label.user"></span>
+		</label>
+		<input type="text" id="node-config-input-user" data-i18n="[placeholder]openmetadata.placeholder.user" style="width: 70%;" />
+		<input type="hidden" id="node-config-input-userFieldType" />
+	</div>
+	<div class="form-row">
+		<label data-i18n="[title]openmetadata.explanation.config.password" for="node-config-input-password" class="form-row-config-parameter">
+			<i class="fa fa-lock"></i>
+			<span data-i18n="openmetadata.label.password"></span>
+		</label>
+		<input type="password" id="node-config-input-password" data-i18n="[placeholder]openmetadata.placeholder.password" style="width: 70%;"/> 
+		<input type="hidden" id="node-config-input-passwordFieldType" />
+	</div>
+	<div class="form-row">
+		<label data-i18n="[title]openmetadata.explanation.config.token" for="node-config-input-token" class="form-row-config-parameter">
+			<i class="fa fa-key"></i>
+			<span data-i18n="openmetadata.label.token"></span>
+		</label>
+		<input type="text" id="node-config-input-tokenInput" data-i18n="[placeholder]openmetadata.placeholder.token" style="width: 70%;" />
+		<input type="hidden" id="node-config-input-tokenInputFieldType" />
+		<input type="hidden" id="node-config-input-token" />
+	</div>
+	<div class="form-row form-row-config-proxy">
+		<label data-i18n="[title]openmetadata.explanation.config.proxy" for="node-config-input-proxy" class="form-row-config-parameter">
+			<i class="fa fa-globe"></i>
+			<span data-i18n="openmetadata.label.proxy"></span>
+		</label>
+		<input type="text" id="node-config-input-proxy" data-i18n="[placeholder]openmetadata.placeholder.proxy" style="width: 70%;" />
+		<input type="hidden" id="node-config-input-proxyFieldType" />
+	</div>
+	<div class="form-row">
+		<label data-i18n="[title]openmetadata.explanation.config.noproxy" for="node-config-input-noproxy" style="width: auto;">
+			<i class="fa fa-globe"></i>
+			<span data-i18n="openmetadata.label.noproxy"></span>
+		</label>
+		<input type="checkbox" id="node-config-input-noproxy" style="display: inline-block; width: auto; vertical-align: top;" />
+	</div>
+	<div class="form-tips"><span data-i18n="[html]openmetadata.message.authentication"></span></div>
+</script>
+
+<script type="text/javascript">
+	RED.nodes.registerType('openMetadataConfig', {
+		category: 'config',
+		defaults: {
+			name: { value: '' },
+			needLogout: { value: false },
+			endpoint: { value: '' },
+			endpointFieldType: { value: 'str' },
+			user: { value: '' },
+			userFieldType: { value: 'str' },
+			password: { value: '' },
+			passwordFieldType: { value: 'str' },
+			tokenInput: { value: '' },
+			tokenInputFieldType: { value: 'str' },
+			token: { value: '' },
+			proxy: { value: '' },
+			proxyFieldType: { value: 'str' },
+			noproxy: { value: false }
+		},
+		label: function () {
+			return this.name || this.user + '@' + this.endpoint;
+		},
+		labelStyle: function () {
+			return this.name ? 'node_label_italic' : '';
+		},
+		oneditprepare: function () {
+			$('#node-config-input-endpoint').typedInput({
+				default: 'str',
+				types: ['str', 'global', 'env'],
+				typeField: $('#node-config-input-endpointFieldType')
+			});
+			$('#node-config-input-user').typedInput({
+				default: 'str',
+				types: ['str', 'global', 'env'],
+				typeField: $('#node-config-input-userFieldType')
+			});
+			$('#node-config-input-password')
+				.typedInput({
+					default: 'str',
+					types: ['str', 'global', 'env'],
+					typeField: $('#node-config-input-passwordFieldType')
+				});
+			$('#node-config-input-tokenInput').typedInput({
+				default: 'str',
+				types: ['str', 'global', 'env'],
+				typeField: $('#node-config-input-tokenInputFieldType')
+			});
+			$('#node-config-input-proxy').typedInput({
+				default: 'str',
+				types: ['str', 'global', 'env'],
+				typeField: $('#node-config-input-proxyFieldType')
+			});
+			if ($('#node-config-input-noproxy').is(':checked')) {
+				$(".form-row-config-proxy").hide();
+			} else {
+				$(".form-row-config-proxy").show();
+			}
+			$('#node-config-input-noproxy').click(function () {
+				if ($('#node-config-input-noproxy').is(':checked')) {
+					$(".form-row-config-proxy").hide();
+				} else {
+					$(".form-row-config-proxy").show();
+				}
+			});
+		},
+	});
+</script>
+
+<script type="text/x-red" data-template-name="openmetadata">
+	<div class="form-row">
+		<label data-i18n="[title]openmetadata.explanation.nodename" for="node-input-nodename" class="form-row-parameter">
+			<i class="fa fa-tag"></i>
+			<span data-i18n="openmetadata.label.nodename"></span>
+		</label>
+		<input type="text" id="node-input-nodename" data-i18n="[placeholder]openmetadata.placeholder.nodename" />
+	</div>
+	<div class="form-row">
+		<label data-i18n="[title]openmetadata.explanation.server" for="node-input-openMetadataConfig" class="form-row-parameter">
+			<i class="fa fa-server"></i>
+			<span data-i18n="openmetadata.label.server"></span>
+		</label>
+		<input type="text" id="node-input-openMetadataConfig" />
+	</div>
+	<div class="form-row">
+		<label data-i18n="[title]openmetadata.explanation.resource" for="node-input-resource" class="form-row-parameter" >
+			<i class="fa fa-cog"></i>
+			<span data-i18n="openmetadata.label.resource"></span>
+		</label>
+		<select type="text" id="node-input-resource" form="node-input-resource" style="width: 70%;">
+			<option value="search_entities" data-i18n="openmetadata.resource.search_entities"></option>
+			<option value="list_database_services" data-i18n="openmetadata.resource.list_database_services"></option>
+			<option value="get_database_service_by_name" data-i18n="openmetadata.resource.get_database_service_by_name"></option>
+			<option value="get_a_database_service" data-i18n="openmetadata.resource.get_a_database_service"></option>
+			<option value="list_databases" data-i18n="openmetadata.resource.list_databases"></option>
+			<option value="get_a_database_by_id" data-i18n="openmetadata.resource.get_a_database_by_id"></option>
+			<option value="list_database_schemas" data-i18n="openmetadata.resource.list_database_schemas"></option>
+            <option value="get_a_schema_by_id" data-i18n="openmetadata.resource.get_a_schema_by_id"></option>
+            <option value="list_tags" data-i18n="openmetadata.resource.list_tags"></option>
+			<option value="list_tables" data-i18n="openmetadata.resource.list_tables"></option>
+            <option value="list_of_column_profiles" data-i18n="openmetadata.resource.list_of_column_profiles"></option>
+			<option value="list_of_table_profiles" data-i18n="openmetadata.resource.list_of_table_profiles"></option>
+			<option value="get_a_table_by_id" data-i18n="openmetadata.resource.get_a_table_by_id"></option> 
+			<option value="get_sample_data" data-i18n="openmetadata.resource.get_sample_data"></option>
+		</select>
+	</div>
+
+	<div class="form-row form-row-showOptParams">
+		<input type="checkbox" id="node-input-showOptParams" style="display: inline-block; width: auto; vertical-align: top;" />
+		<label data-i18n="[title]openmetadata.explanation.showOptParams" for="node-input-showOptParams" style="width: auto;">
+			<span data-i18n="openmetadata.label.showOptParams"></span>
+		</label>
+	</div>
+
+	<!-- required parameters -->
+	<div class="form-row form-row-q">
+		<label for="node-input-q" id="node-label-q" class="form-row-parameter">
+			<i class="fa fa-tumblr"></i>
+			<span data-i18n="openmetadata.label.search_entities.q"></span>
+		</label>
+		<input type="text" id="node-input-q" data-i18n="[placeholder]openmetadata.placeholder.search_entities.q" style="width: 70%;" />
+		<input type="hidden" id="node-input-qFieldType" />
+	</div>
+	<div class="form-row form-row-name">
+		<label for="node-input-name" id="node-label-name" class="form-row-parameter">
+			<i class="fa fa-tag"></i>
+			<span data-i18n="openmetadata.label.name"></span>
+		</label>
+		<input type="text" id="node-input-name" data-i18n="[placeholder]openmetadata.placeholder.get_database_service_by_name.name" style="width: 70%;" />
+		<input type="hidden" id="node-input-nameFieldType" />
+	</div>
+	<div class="form-row form-row-id_param">
+		<label for="node-input-id_param" id="node-label-id_param" class="form-row-parameter">
+			<i class="fa fa-tag"></i>
+			<span data-i18n="openmetadata.label.id_param"></span>
+		</label>
+		<input type="text" id="node-input-id_param" data-i18n="[placeholder]openmetadata.placeholder.id_param" style="width: 70%;" />
+		<input type="hidden" id="node-input-id_paramFieldType" />
+	</div>
+	<div class="form-row form-row-fqn">
+		<label for="node-input-fqn" id="node-label-fqn" class="form-row-parameter">
+			<i class="fa fa-tag"></i>
+			<span data-i18n="openmetadata.label.fqn"></span>
+		</label>
+		<input type="text" id="node-input-fqn" data-i18n="[placeholder]openmetadata.placeholder.list_of_column_profiles.fqn" style="width: 70%;"  />
+		<input type="hidden" id="node-input-fqnFieldType" />
+	</div>
+	<div class="form-row form-row-startTs">
+		<label for="node-input-startTs" id="node-label-startTs" class="form-row-parameter">
+			<i class="fa fa-tag"></i>
+			<span data-i18n="openmetadata.label.startTs"></span>
+		</label>
+		<input type="text" id="node-input-startTs" data-i18n="[placeholder]openmetadata.placeholder.list_of_column_profiles.startTs"  style="width: 70%;" />
+		<input type="hidden" id="node-input-startTsFieldType" />
+	</div>
+	<div class="form-row form-row-endTs">
+		<label for="node-input-endTs" id="node-label-endTs" class="form-row-parameter">
+			<i class="fa fa-tag"></i>
+			<span data-i18n="openmetadata.label.endTs"></span>
+		</label>
+		<input type="text" id="node-input-endTs" data-i18n="[placeholder]openmetadata.placeholder.list_of_column_profiles.endTs" style="width: 70%;" />
+		<input type="hidden" id="node-input-endTsFieldType" />
+	</div>
+
+	<!-- other parameters -->
+    <div class="form-row form-row-index">
+		<label for="node-input-index" id="node-label-index" class="form-row-parameter">
+			<i class="fa fa-ellipsis-v"></i>
+			<span data-i18n="openmetadata.label.search_entities.index"></span>
+		</label>
+		<input type="text" id="node-input-index" data-i18n="[placeholder]openmetadata.placeholder.search_entities.index" style="width: 70%;" />
+		<input type="hidden" id="node-input-indexFieldType" />
+	</div>
+	<div class="form-row form-row-deleted">
+		<label for="node-input-deleted" id="node-label-deleted" class="form-row-parameter">
+			<i class="fa fa-times"></i>
+			<span data-i18n="openmetadata.label.search_entities.deleted"></span>
+		</label>
+		<input type="text" id="node-input-deleted" data-i18n="[placeholder]openmetadata.placeholder.search_entities.deleted" style="width: 70%;" />
+		<input type="hidden" id="node-input-deletedFieldType" />
+	</div>
+	<div class="form-row form-row-from">
+		<label for="node-input-from" id="node-label-from" class="form-row-parameter">
+			<i class="fa fa-tint"></i>
+			<span data-i18n="openmetadata.label.search_entities.from"></span>
+		</label>
+		<input type="text" id="node-input-from" data-i18n="[placeholder]openmetadata.placeholder.search_entities.from" style="width: 70%;" />
+		<input type="hidden" id="node-input-fromFieldType" />
+	</div>
+	<div class="form-row form-row-size">
+		<label for="node-input-size" id="node-label-size" class="form-row-parameter">
+			<i class="fa fa-arrows-h"></i>
+			<span data-i18n="openmetadata.label.search_entities.size"></span>
+		</label>
+		<input type="text" id="node-input-size" data-i18n="[placeholder]openmetadata.placeholder.search_entities.size" style="width: 70%;" />
+		<input type="hidden" id="node-input-sizeFieldType" />
+	</div>
+	<div class="form-row form-row-sort_field">
+		<label for="node-input-sort_field" id="node-label-sort_field" class="form-row-parameter">
+			<i class="fa fa-sort"></i>
+			<span data-i18n="openmetadata.label.search_entities.sort_field"></span>
+		</label>
+		<input type="text" id="node-input-sort_field" data-i18n="[placeholder]openmetadata.placeholder.search_entities.sort_field" style="width: 70%;" />
+		<input type="hidden" id="node-input-sort_fieldFieldType" />
+	</div>
+	<div class="form-row form-row-sort_order">
+		<label for="node-input-sort_order" id="node-label-sort_order" class="form-row-parameter">
+			<i class="fa fa-sort"></i>
+			<span data-i18n="openmetadata.label.search_entities.sort_order"></span>
+		</label>
+		<input type="text" id="node-input-sort_order" data-i18n="[placeholder]openmetadata.placeholder.search_entities.sort_order" style="width: 70%;" />
+		<input type="hidden" id="node-input-sort_orderFieldType" />
+	</div>
+	<div class="form-row form-row-track_total_hits">
+		<label for="node-input-track_total_hits" id="node-label-track_total_hits" class="form-row-parameter">
+			<i class="fa fa-tint"></i>
+			<span data-i18n="openmetadata.label.search_entities.track_total_hits"></span>
+		</label>
+		<input type="text" id="node-input-track_total_hits" data-i18n="[placeholder]openmetadata.placeholder.search_entities.track_total_hits" style="width: 70%;"  />
+		<input type="hidden" id="node-input-track_total_hitsFieldType" />
+	</div>
+	<div class="form-row form-row-query_filter">
+		<label for="node-input-query_filter" id="node-label-query_filter" class="form-row-parameter">
+			<i class="fa fa-filter"></i>
+			<span data-i18n="openmetadata.label.search_entities.query_filter"></span>
+		</label>
+		<input type="text" id="node-input-query_filter" data-i18n="[placeholder]openmetadata.placeholder.search_entities.query_filter" style="width: 70%;" />
+		<input type="hidden" id="node-input-query_filterFieldType" />
+	</div>
+	<div class="form-row form-row-post_filter">
+		<label for="node-input-post_filter" id="node-label-post_filter" class="form-row-parameter">
+			<i class="fa fa-filter"></i>
+			<span data-i18n="openmetadata.label.search_entities.post_filter"></span>
+		</label>
+		<input type="text" id="node-input-post_filter" data-i18n="[placeholder]openmetadata.placeholder.search_entities.post_filter" style="width: 70%;" />
+		<input type="hidden" id="node-input-post_filterFieldType" />
+	</div>
+	<div class="form-row form-row-fetch_source">
+		<label for="node-input-fetch_source" id="node-label-fetch_source" class="form-row-parameter">
+			<i class="fa fa-tint"></i>
+			<span data-i18n="openmetadata.label.search_entities.fetch_source"></span>
+		</label>
+		<input type="text" id="node-input-fetch_source" data-i18n="[placeholder]openmetadata.placeholder.search_entities.fetch_source" style="width: 70%;" />
+		<input type="hidden" id="node-input-fetch_sourceFieldType" />
+	</div>
+	<div class="form-row form-row-include_source_fields">
+		<label for="node-input-include_source_fields" id="node-label-include_source_fields" class="form-row-parameter">
+			<i class="fa fa-plus-square"></i>
+			<span data-i18n="openmetadata.label.search_entities.include_source_fields"></span>
+		</label>
+		<input type="text" id="node-input-include_source_fields" data-i18n="[placeholder]openmetadata.placeholder.search_entities.include_source_fields" style="width: 70%;" />
+		<input type="hidden" id="node-input-include_source_fieldsFieldType" />
+	</div>
+
+	<div class="form-row form-row-parent">
+		<label for="node-input-parent" id="node-label-parent" class="form-row-parameter">
+			<i class="fa fa-tags"></i>
+			<span data-i18n="openmetadata.label.list_tags.parent"></span>
+		</label>
+		<input type="text" id="node-input-parent" data-i18n="[placeholder]openmetadata.placeholder.list_tags.parent"  style="width: 70%;" >
+		<input type="text" id="node-input-parentFieldType" />
+	</div>	
+	<div class="form-row form-row-fields">
+		<label for="node-input-fields" id="node-label-fields" class="form-row-parameter">
+			<i class="fa fa-tag"></i>
+			<span data-i18n="openmetadata.label.fields"></span>
+		</label>
+		<input type="text" id="node-input-fields"  data-i18n="[placeholder]openmetadata.placeholder.fields" style="width: 70%;" >
+		<input type="hidden" id="node-input-fieldsFieldType" />
+	</div>
+	<div class="form-row form-row-domain">
+		<label for="node-input-domain" id="node-label-domain" class="form-row-parameter">
+			<i class="fa fa-globe"></i>
+			<span data-i18n="openmetadata.label.list_database_services.domain"></span>
+		</label>
+		<input type="text" id="node-input-domain" data-i18n="[placeholder]openmetadata.placeholder.list_database_services.domain" style="width: 70%;" />
+		<input type="hidden" id="node-input-domainFieldType" />
+	</div>	
+	<div class="form-row form-row-service">
+		<label for="node-input-service" id="node-label-service" class="form-row-parameter">
+			<i class="fa fa-snowflake-o"></i>
+			<span data-i18n="openmetadata.label.list_databases.service"></span>
+		</label>
+		<input type="text" id="node-input-service" data-i18n="[placeholder]openmetadata.placeholder.list_databases.service" style="width: 70%;" />
+		<input type="hidden" id="node-input-serviceFieldType" />
+	</div>	
+	<div class="form-row form-row-database">
+		<label for="node-input-database" id="node-label-database" class="form-row-parameter">
+			<i class="fa fa-database"></i>
+			<span data-i18n="openmetadata.label.list_database_schemas.database"></span>
+		</label>
+		<input type="text" id="node-input-database" data-i18n="[placeholder]openmetadata.placeholder.list_database_schemas.database" style="width: 70%;" />
+		<input type="hidden" id="node-input-databaseFieldType" />
+	</div>
+	<div class="form-row form-row-disabled">
+		<label for="node-input-disabled" id="node-label-disabled" class="form-row-parameter">
+			<i class="fa fa-ban"></i>
+			<span data-i18n="openmetadata.label.list_tags.disabled"></span>
+		</label>
+		<input type="text" id="node-input-disabled" data-i18n="[placeholder]openmetadata.placeholder.list_tags.disabled" style="width: 70%;" />
+		<input type="hidden" id="node-input-disabledFieldType" />
+	</div>	
+	<div class="form-row form-row-databaseSchema">
+		<label for="node-input-databaseSchema" id="node-label-databaseSchema" class="form-row-parameter">
+			<i class="fa fa-sitemap"></i>
+			<span data-i18n="openmetadata.label.list_tables.databaseSchema"></span>
+		</label>
+		<input type="text" id="node-input-databaseSchema" data-i18n="[placeholder]openmetadata.placeholder.list_tables.databaseSchema" style="width: 70%;" >
+		<input type="hidden" id="node-input-databaseSchemaFieldType" />
+	</div>
+	<div class="form-row form-row-includeEmptyTestSuite">
+		<label for="node-input-includeEmptyTestSuite" id="node-label-includeEmptyTestSuite" class="form-row-parameter">
+			<i class="fa fa-plus"></i>
+			<span data-i18n="openmetadata.label.list_tables.includeEmptyTestSuite"></span>
+		</label>
+		<input type="text" id="node-input-includeEmptyTestSuite" data-i18n="[placeholder]openmetadata.placeholder.list_tables.includeEmptyTestSuite" style="width: 70%;"/>
+		<input type="hidden" id="node-input-includeEmptyTestSuiteFieldType" />
+	</div>
+	<div class="form-row form-row-limit">
+		<label for="node-input-limit" id="node-label-limit" class="form-row-parameter">
+			<i class="fa fa-compress"></i>
+			<span data-i18n="openmetadata.label.limit"></span>
+		</label>
+		<input type="text" id="node-input-limit" data-i18n="[placeholder]openmetadata.placeholder.limit"  style="width: 70%;" >
+		<input type="hidden" id="node-input-limitFieldType" />
+	</div>
+	<div class="form-row form-row-before">
+		<label for="node-input-before" id="node-label-before" class="form-row-parameter">
+			<i class="fa fa-backward"></i>
+			<span data-i18n="openmetadata.label.before"></span>
+		</label>
+		<input type="text" id="node-input-before" data-i18n="[placeholder]openmetadata.placeholder.before"  style="width: 70%;" >
+		<input type="hidden" id="node-input-beforeFieldType" />
+	</div>
+	<div class="form-row form-row-after">
+		<label for="node-input-after" id="node-label-after" class="form-row-parameter">
+			<i class="fa fa-forward"></i>
+			<span data-i18n="openmetadata.label.after"></span>
+		</label>
+		<input type="text" id="node-input-after" data-i18n="[placeholder]openmetadata.placeholder.after" style="width: 70%;" >
+		<input type="hidden" id="node-input-afterFieldType" />
+	</div>
+	<div class="form-row form-row-include">
+		<label for="node-input-include" id="node-label-include" class="form-row-parameter">
+			<i class="fa fa-plus-square"></i>
+			<span data-i18n="openmetadata.label.include"></span>
+		</label>
+		<input type="text" id="node-input-include" data-i18n="[placeholder]openmetadata.placeholder.include" style="width: 70%;" >
+		<input type="hidden" id="node-input-includeFieldType" />
+	</div>
+</script>
+
+<script type="text/javascript">
+	/* API parameters with corresponding title and placeholder. */
+	const configControlVisible = {
+		q: {
+			titleDefault: 'openmetadata.explanation.search_entities.q',
+			resources: {
+				search_entities: {},
+			},
+			requiredParams: true
+		},
+		name: {
+			titleDefault: 'openmetadata.explanation.get_database_service_by_name.name',
+			resources: {
+				get_database_service_by_name: {
+					placeholder: 'openmetadata.placeholder.get_database_service_by_name.name'
+				},
+			},
+			requiredParams: true
+		},
+		id_param: {
+			titleDefault: 'openmetadata.explanation.get_a_database_service.id_param',
+			resources: {
+				get_a_database_service: {
+					title: 'openmetadata.explanation.get_a_database_service.id_param'
+				},
+				get_a_database_by_id: {
+					title: 'openmetadata.explanation.get_a_database_by_id.id_param'
+				},
+				get_a_schema_by_id: {
+					title: 'openmetadata.explanation.get_a_schema_by_id.id_param'
+				},
+				get_a_table_by_id: {
+					title: 'openmetadata.explanation.get_a_table_by_id.id_param'
+				},
+				get_sample_data: {
+					title: 'openmetadata.explanation.get_sample_data.id_param'
+				}
+			},
+			requiredParams: true
+		},
+		fqn: {
+			titleDefault: 'openmetadata.explanation.list_of_column_profiles.fqn',
+			resources: {
+				list_of_column_profiles: {
+					title: 'openmetadata.explanation.list_of_column_profiles.fqn'
+				},
+				list_of_table_profiles: {
+					title: 'openmetadata.explanation.list_of_table_profiles.fqn'
+				}
+			},
+			requiredParams: true
+		},
+		startTs: {
+			titleDefault: 'openmetadata.explanation.list_of_column_profiles.startTs',
+			resources: {
+				list_of_column_profiles: {
+					title: 'openmetadata.explanation.list_of_column_profiles.startTs'
+				},
+				list_of_table_profiles: {
+					title: 'openmetadata.explanation.list_of_table_profiles.startTs',
+					required: false
+				}
+			},
+			requiredParams: true
+		},
+		endTs: {
+			titleDefault: 'openmetadata.explanation.list_of_column_profiles.endTs',
+			resources: {
+				list_of_column_profiles: {
+					title: 'openmetadata.explanation.list_of_column_profiles.endTs'
+				},
+				list_of_table_profiles: {
+					title: 'openmetadata.explanation.list_of_table_profiles.endTs',
+					required: false
+				}
+			},
+			requiredParams: true
+		},
+		index: {
+			titleDefault: 'openmetadata.explanation.search_entities.index',
+			resources: {
+				search_entities: {},
+			}
+		},
+		deleted: {
+			titleDefault: 'openmetadata.explanation.search_entities.deleted',
+			resources: {
+				search_entities: {},
+			}
+		},
+		from: {
+			titleDefault: 'openmetadata.explanation.search_entities.from',
+			resources: {
+				search_entities: {},
+			}
+		},
+		size: {
+			titleDefault: 'openmetadata.explanation.search_entities.size',
+			resources: {
+				search_entities: {},
+			}
+		},
+		sort_field: {
+			titleDefault: 'openmetadata.explanation.search_entities.sort_field',
+			resources: {
+				search_entities: {},
+			}
+		},
+		sort_order: {
+			titleDefault: 'openmetadata.explanation.search_entities.sort_order',
+			resources: {
+				search_entities: {},
+			}
+		},
+		track_total_hits: {
+			titleDefault: 'openmetadata.explanation.search_entities.track_total_hits',
+			resources: {
+				search_entities: {},
+			}
+		},
+		query_filter: {
+			titleDefault: 'openmetadata.explanation.search_entities.query_filter',
+			resources: {
+				search_entities: {},
+			}
+		},
+		post_filter: {
+			titleDefault: 'openmetadata.explanation.search_entities.post_filter',
+			resources: {
+				search_entities: {},
+			}
+		},
+		fetch_source: {
+			titleDefault: 'openmetadata.explanation.search_entities.fetch_source',
+			resources: {
+				search_entities: {},
+			}
+		},
+		include_source_fields: {
+			titleDefault: 'openmetadata.explanation.search_entities.include_source_fields',
+			resources: {
+				search_entities: {},
+			}
+		},
+		parent: {
+			titleDefault: 'openmetadata.explanation.list_tags.parent',
+			resources: {
+				list_tags: {},
+			},
+		},
+		fields: {
+			titleDefault: 'openmetadata.explanation.fields',
+			resources: {
+				list_database_services: {
+					placeholder: 'openmetadata.placeholder.list_database_services.fields'
+				},
+				get_database_service_by_name: {
+					placeholder: 'openmetadata.placeholder.get_database_service_by_name.fields'
+				},
+				get_a_database_service: {
+					placeholder: 'openmetadata.placeholder.get_a_database_service.fields'
+				},
+				list_databases: {
+					placeholder: 'openmetadata.placeholder.list_databases.fields'
+				},
+				get_a_database_by_id: {
+					placeholder: 'openmetadata.placeholder.get_a_database_by_id.fields'
+				},
+				list_database_schemas: {
+					placeholder: 'openmetadata.placeholder.list_database_schemas.fields'
+				},
+				get_a_schema_by_id: {
+					placeholder: 'openmetadata.placeholder.get_a_schema_by_id.fields'
+				},
+				list_tags: {
+					placeholder: 'openmetadata.placeholder.list_tags.fields'
+				},
+				list_tables: {
+					placeholder: 'openmetadata.placeholder.list_tables.fields'
+				},
+				get_a_table_by_id: {
+					placeholder: 'openmetadata.placeholder.get_a_table_by_id.fields'
+				},
+			}
+		},
+		domain: {
+			titleDefault: 'openmetadata.explanation.list_database_services.domain',
+			resources: {
+				list_database_services: {},
+			},
+		},
+		service: {
+			titleDefault: 'openmetadata.explanation.list_databases.service',
+			resources: {
+				list_databases: {},
+			},
+		},
+		database: {
+			titleDefault: 'openmetadata.explanation.list_database_schemas.database',
+			resources: {
+				list_database_schemas: {
+					title: 'openmetadata.explanation.list_database_schemas.database'
+				},
+				list_tables: {
+					title: 'openmetadata.explanation.list_tables.database'
+				},
+			},
+		},
+		disabled: {
+			titleDefault: 'openmetadata.explanation.list_tags.disabled',
+			resources: {
+				list_tags: {},
+			},
+		},
+		databaseSchema: {
+			titleDefault: 'openmetadata.explanation.list_tables.databaseSchema',
+			resources: {
+				list_tables: {},
+			}
+		},
+		includeEmptyTestSuite: {
+			titleDefault: 'openmetadata.explanation.list_tables.includeEmptyTestSuite',
+			resources: {
+				list_tables: {},
+			}
+		},
+		limit: {
+			titleDefault: 'openmetadata.explanation.list_database_services.limit',
+			resources: {
+				list_database_services: {
+					title: 'openmetadata.explanation.list_database_services.limit'
+				},
+				list_databases: {
+					title: 'openmetadata.explanation.list_databases.limit'
+				},
+				list_database_schemas: {
+					title: 'openmetadata.explanation.list_database_schemas.limit'
+				},
+				list_tags: {
+					title: 'openmetadata.explanation.list_tags.limit'
+				},
+				list_tables: {
+					title: 'openmetadata.explanation.list_tables.limit'
+				},
+			},
+		},
+		before: {
+			titleDefault: 'openmetadata.explanation.list_database_services.before',
+			resources: {
+				list_database_services: {
+					title: 'openmetadata.explanation.list_database_services.before'
+				},
+				list_databases: {
+					title: 'openmetadata.explanation.list_databases.before'
+				},
+				list_database_schemas: {
+					title: 'openmetadata.explanation.list_database_schemas.before'
+				},
+				list_tags: {
+					title: 'openmetadata.explanation.list_tags.before'
+				},
+				list_tables: {
+					title: 'openmetadata.explanation.list_tables.before'
+				},
+			},
+		},
+		after: {
+			titleDefault: 'openmetadata.explanation.list_database_services.after',
+			resources: {
+				list_database_services: {
+					title: 'openmetadata.explanation.list_database_services.after'
+				},
+				list_databases: {
+					title: 'openmetadata.explanation.list_databases.after'
+				},
+				list_database_schemas: {
+					title: 'openmetadata.explanation.list_database_schemas.after'
+				},
+				list_tags: {
+					title: 'openmetadata.explanation.list_tags.after'
+				},
+				list_tables: {
+					title: 'openmetadata.explanation.list_tables.after'
+				},
+			},
+		},
+		include: {
+			titleDefault: 'openmetadata.explanation.include',
+			resources: {
+				list_database_services: {},
+				get_database_service_by_name: {},
+				get_a_database_service: {},
+				list_databases: {},
+				get_a_database_by_id: {},
+				list_database_schemas: {},
+				get_a_schema_by_id: {},
+				list_tags: {},
+				list_tables: {},
+				get_a_table_by_id: {}
+			},
+		},
+
+	}
+	const VisibleControl = (node, resource, showOptParams) => {
+	/* 
+	* Firstly, hide all fields, then show necessary fields and set its explanation.
+	* Because field name is same but explanation might be different depending on API,
+	* we set an explanation dynamically.
+	*/
+
+		Object.entries(configControlVisible).forEach(([paramname, configOfParamname]) => {
+			const {
+				resources: resourcesConfig = {},
+				titleDefault: titleDefaultConfig = '',
+				requiredParams: requiredParamsConfig = false
+			} = configOfParamname;
+
+			$(`.form-row-${paramname}`).hide();
+
+			Object.entries(resourcesConfig).forEach(([resourceNameItem, resourceValueItem]) => {
+				if (resource == resourceNameItem) {
+					const {
+						title: titleOfResource = titleDefaultConfig,
+						placeholder: placeholderOfResource,
+						required: requiredInResource = true
+					} = resourceValueItem;
+
+					if (requiredParamsConfig) {
+						if (requiredInResource) {
+							$(`.form-row-${paramname}`).show();
+						}
+					}
+					if (showOptParams) {
+						$(`.form-row-${paramname}`).show();
+						$(`#node-label-${paramname}`).attr('title', node._(titleOfResource));
+						if (placeholderOfResource != undefined)
+							$(`.form-row-${paramname} .red-ui-typedInput-container`).find('input').attr('placeholder', node._(placeholderOfResource));
+					}
+				}
+			})
+		})
+	}
+
+	const defaultFieldType = {
+		qFieldType: { value: "str" },
+		nameFieldType: { value: "str" },
+		id_paramFieldType: { value: "str" },
+		fqnFieldType: { value: "str" },
+		startTsFieldType: { value: "num" },
+		endTsFieldType: { value: "num" },
+		indexFieldType: { value: "str" },
+		deletedFieldType: { value: "bool" },
+		fromFieldType: { value: "num" },
+		sizeFieldType: { value: "num" },
+		sort_fieldFieldType: { value: "str" },
+		sort_orderFieldType: { value: "str" },
+		track_total_hitsFieldType: { value: "bool" },
+		query_filterFieldType: { value: "str" },
+		post_filterFieldType: { value: "str" },
+		fetch_sourceFieldType: { value: "bool" },
+		include_source_fieldsFieldType: { value: "str" },
+		parentFieldType: { value: "str" },
+		fieldsFieldType: { value: "str" },
+		domainFieldType: { value: "str" },
+		serviceFieldType: { value: "str" },
+		databaseFieldType: { value: "str" },
+		disabledFieldType: { value: "str" },
+		databaseSchemaFieldType: { value: "str" },
+		includeEmptyTestSuiteFieldType: { value: "bool" },
+		limitFieldType: { value: "num" },
+		beforeFieldType: { value: "str" },
+		afterFieldType: { value: "str" },
+		includeFieldType: { value: "str" },
+	}
+
+	/* Set input datatype for each parameter. */ 
+	function SetValueToInputField(node, paramname) {
+		let type = eval('node.' + paramname + 'FieldType');
+		$('#node-input-' + paramname).val(eval("node." + paramname));
+		const originalType = eval('defaultFieldType.' + paramname + 'FieldType');
+		let initType = originalType.value;
+		$('#node-input-' + paramname).typedInput({
+			default: type,
+			types: [initType, 'msg', 'flow', 'global', 'env'],
+			typeField: $('#node-input-' + paramname + 'FieldType')
+		});
+	}
+
+	/* Validation required parameter with defaults */
+	const requiredResource = (listResources) => {
+		if (!Array.isArray(listResources)) {
+			listResources = [listResources];
+		}
+		return (currentValue) => {
+			let resourceValue = $('#node-input-resource').val();
+			return !(listResources.includes(resourceValue) && currentValue == '');
+		}
+	}
+
+	RED.nodes.registerType('openmetadata', {
+		category: 'storage',
+		defaults: {
+			nodename: { value: "" },
+			openMetadataConfig: {
+				type: 'openMetadataConfig',
+				required: true
+			},
+			resource: { value: "" },
+			showOptParams: { value: true },
+
+			/*
+			 * API's parameters. The variable name must be the same as parameter name
+			 * because it is used to construct a request URL.
+			 */
+			q: { value: "", validate: requiredResource('search_entities') },
+			name: { value: "", validate: requiredResource('get_database_service_by_name') },
+			id_param:
+			{
+				value: "",
+				validate: requiredResource(['get_a_database_service', 'get_a_database_by_id',
+					'get_a_schema_by_id', 'get_a_table_by_id', 'get_sample_data'])
+			},
+			fqn: {
+				value: "",
+				validate: requiredResource(['list_of_column_profiles', 'list_of_table_profiles'])
+			},
+			startTs: { validate: requiredResource('list_of_column_profiles') },
+			endTs: { validate: requiredResource('list_of_column_profiles') },
+			index: { value: "" },
+			deleted: { value: false },
+			from: {},
+			size: {},
+			sort_field: { value: "" },
+			sort_order: { value: "" },
+			track_total_hits: { value: false },
+			query_filter: { value: "" },
+			post_filter: { value: "" },
+			fetch_source: {},
+			include_source_fields: { value: "" },
+			parent: { value: "" },
+			fields: { value: "" },
+			domain: { value: "" },
+			service: { value: "" },
+			database: { value: "" },
+			disabled: {},
+			databaseSchema: { value: "" },
+			includeEmptyTestSuite: {},
+			limit: {},
+			before: { value: "" },
+			after: { value: "" },
+			include: { value: "" },
+			...defaultFieldType
+		},
+		inputs: 1,
+		outputs: 1,
+		color: '#e6e0f8',
+		paletteLabel: 'openmetadata',
+		label: function () {
+			return this.nodename || 'openmetadata';
+		},
+		labelStyle: 'labelStyle',
+		inputLabels: 'inputLabels',
+		outputLabels: 'outputLabels',
+		icon: "db.svg",
+		align: 'left',
+		oneditprepare: function () {
+			$('#node-input-openMetadataConfig').val(this.openMetadataConfig);
+			$('#node-input-resource').val(this.resource);
+			$('#node-input-showOptParams').val(this.showOptParams);
+
+			Object.entries(configControlVisible).forEach(([paramname]) => {
+				SetValueToInputField(this, paramname);
+			})
+
+			let node = this;
+			$("#node-input-resource").on("change", function () {
+				/* Control input fields visibility depending on a resource when resource is changed */
+				let isChecked = $('#node-input-showOptParams').is(':checked');
+				VisibleControl(node, this.value, isChecked);
+
+			});
+			$('#node-input-showOptParams').click(function () {
+				/* Control input fields visibility depending on a resource when showing option is clicked */
+				let isChecked = $('#node-input-showOptParams').is(':checked');
+				VisibleControl(node, $("#node-input-resource").val(), isChecked);
+			});
+		}
+	});
+</script>

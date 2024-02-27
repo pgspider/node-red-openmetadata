@@ -1,0 +1,1150 @@
+[
+    {
+        "id": "ce1997a2d02a9e28",
+        "type": "tab",
+        "label": "list_database_schemas",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "705938859e157b32",
+        "type": "group",
+        "z": "ce1997a2d02a9e28",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "f346298730c94f22",
+            "ad198d815c373680",
+            "9c9e87ffefe79335",
+            "ff3ed936fef9b6d5",
+            "9eb85af5907f935f",
+            "7443dd6e5c3a3f81",
+            "8142c3f1e21d8488",
+            "d860f991e49e3b99",
+            "23b528396d5886f9",
+            "71a090016ad4c596",
+            "139ba57a2d9142f4",
+            "1337023f9c3b8185",
+            "4acc891392630162",
+            "d2e3ed1356a53ffa",
+            "44514f704be45879",
+            "ba8d46ddb9da0749"
+        ],
+        "x": 194,
+        "y": 519,
+        "w": 1312,
+        "h": 402
+    },
+    {
+        "id": "33bd7316d6cd1b5b",
+        "type": "group",
+        "z": "ce1997a2d02a9e28",
+        "name": "",
+        "style": {
+            "stroke": "#0070c0",
+            "label": true
+        },
+        "nodes": [
+            "1a94272a94b8d3d5",
+            "fc3003a946c5ecfd",
+            "74ca88dbe31980a1",
+            "8e6a9587fa2f6b90",
+            "4b1372f1ffddbed2",
+            "45aaa7b66810b8d6",
+            "98d959dfecef0834",
+            "ed5013ce51b06b6a",
+            "de79fdb99f3373f1",
+            "a23c613f39a2dd64",
+            "3427e66485227804"
+        ],
+        "x": 194,
+        "y": 1019,
+        "w": 1272,
+        "h": 342
+    },
+    {
+        "id": "0805a333ec7c7641",
+        "type": "group",
+        "z": "ce1997a2d02a9e28",
+        "name": "",
+        "style": {
+            "stroke": "#0070c0",
+            "label": true
+        },
+        "nodes": [
+            "878bf694683a8c77",
+            "81552bb34947085a",
+            "7b824391b6abac34",
+            "41ad389a98226048",
+            "13fbf65906296e3c",
+            "0c5d9e707fffaf30",
+            "e1ba41b9b8aa7e5e",
+            "bccee378468738b0",
+            "8d87e56f034dde50",
+            "977ee83072d364f3",
+            "a6a661d7787a2b5d",
+            "abd4fc032301ef9b"
+        ],
+        "x": 194,
+        "y": 179,
+        "w": 1272,
+        "h": 262
+    },
+    {
+        "id": "f31bed14f7560a97",
+        "type": "comment",
+        "z": "ce1997a2d02a9e28",
+        "name": "Test suite: List database schemas ",
+        "info": " 1. Input: default value\n - limit: 10\n - include: \"non-deleted\"\n\n 2. Expected: Return all databases non-deleted (max 10 records)\n - total databases: 9\n - deleted database: 2\n=> return 7 databases non-deleted",
+        "x": 130,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "878bf694683a8c77",
+        "type": "test inject",
+        "z": "ce1997a2d02a9e28",
+        "g": "0805a333ec7c7641",
+        "name": "",
+        "onstart": false,
+        "tests": "return [{\n\tlabel: 'test 1',\n\tassert: function (msg) {\n        // msg.result === msg.expected;\n\t\tshould(msg.result).is.exactly(msg.expected);\n\t}\n}];",
+        "x": 540,
+        "y": 280,
+        "wires": [
+            [
+                "a6a661d7787a2b5d"
+            ]
+        ]
+    },
+    {
+        "id": "81552bb34947085a",
+        "type": "json",
+        "z": "ce1997a2d02a9e28",
+        "g": "0805a333ec7c7641",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 830,
+        "y": 360,
+        "wires": [
+            [
+                "8d87e56f034dde50"
+            ]
+        ]
+    },
+    {
+        "id": "7b824391b6abac34",
+        "type": "assert",
+        "z": "ce1997a2d02a9e28",
+        "g": "0805a333ec7c7641",
+        "name": "",
+        "x": 1390,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "41ad389a98226048",
+        "type": "comment",
+        "z": "ce1997a2d02a9e28",
+        "g": "0805a333ec7c7641",
+        "name": "Actual result from openmetadata node",
+        "info": "",
+        "x": 930,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "13fbf65906296e3c",
+        "type": "complete",
+        "z": "ce1997a2d02a9e28",
+        "g": "0805a333ec7c7641",
+        "name": "",
+        "scope": [
+            "878bf694683a8c77"
+        ],
+        "uncaught": false,
+        "x": 550,
+        "y": 380,
+        "wires": [
+            [
+                "f346298730c94f22"
+            ]
+        ]
+    },
+    {
+        "id": "0c5d9e707fffaf30",
+        "type": "comment",
+        "z": "ce1997a2d02a9e28",
+        "g": "0805a333ec7c7641",
+        "name": "TC17: List all database schemas with default value",
+        "info": " 1. Input: default value\n    - N/A\n\n 2. Expected: Return all database schemas non-deleted (max 10 records)",
+        "x": 410,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "e1ba41b9b8aa7e5e",
+        "type": "json",
+        "z": "ce1997a2d02a9e28",
+        "g": "0805a333ec7c7641",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 1150,
+        "y": 360,
+        "wires": [
+            [
+                "977ee83072d364f3"
+            ]
+        ]
+    },
+    {
+        "id": "bccee378468738b0",
+        "type": "comment",
+        "z": "ce1997a2d02a9e28",
+        "g": "0805a333ec7c7641",
+        "name": "Expected result from REST API",
+        "info": "",
+        "x": 1230,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "8d87e56f034dde50",
+        "type": "change",
+        "z": "ce1997a2d02a9e28",
+        "g": "0805a333ec7c7641",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "result",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 400,
+        "wires": [
+            [
+                "abd4fc032301ef9b"
+            ]
+        ]
+    },
+    {
+        "id": "977ee83072d364f3",
+        "type": "change",
+        "z": "ce1997a2d02a9e28",
+        "g": "0805a333ec7c7641",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "expected",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1190,
+        "y": 400,
+        "wires": [
+            [
+                "7b824391b6abac34"
+            ]
+        ]
+    },
+    {
+        "id": "a6a661d7787a2b5d",
+        "type": "openmetadata",
+        "z": "ce1997a2d02a9e28",
+        "g": "0805a333ec7c7641",
+        "nodename": "",
+        "openMetadataConfig": "ed60dcee1fc8d735",
+        "resource": "list_database_schemas",
+        "showOptParams": true,
+        "q": "*",
+        "name": "PostgreSQL",
+        "id_param": "#",
+        "fqn": "postgres.test",
+        "startTs": "1",
+        "endTs": "10",
+        "index": "table_search_index",
+        "deleted": "false",
+        "from": 0,
+        "size": 10,
+        "sort_field": "_score",
+        "sort_order": "desc",
+        "track_total_hits": "false",
+        "query_filter": "",
+        "post_filter": "",
+        "fetch_source": "true",
+        "include_source_fields": "",
+        "parent": "",
+        "fields": "",
+        "domain": "",
+        "service": "",
+        "database": "",
+        "disabled": "",
+        "databaseSchema": "",
+        "includeEmptyTestSuite": "true",
+        "limit": "",
+        "before": "",
+        "after": "",
+        "include": "",
+        "qFieldType": "str",
+        "nameFieldType": "str",
+        "id_paramFieldType": "str",
+        "fqnFieldType": "str",
+        "startTsFieldType": "num",
+        "endTsFieldType": "num",
+        "indexFieldType": "str",
+        "deletedFieldType": "bool",
+        "fromFieldType": "num",
+        "sizeFieldType": "num",
+        "sort_fieldFieldType": "str",
+        "sort_orderFieldType": "str",
+        "track_total_hitsFieldType": "bool",
+        "query_filterFieldType": "str",
+        "post_filterFieldType": "str",
+        "fetch_sourceFieldType": "bool",
+        "include_source_fieldsFieldType": "str",
+        "parentFieldType": "str",
+        "fieldsFieldType": "str",
+        "domainFieldType": "str",
+        "serviceFieldType": "str",
+        "databaseFieldType": "str",
+        "disabledFieldType": "str",
+        "databaseSchemaFieldType": "str",
+        "includeEmptyTestSuiteFieldType": "bool",
+        "limitFieldType": "num",
+        "beforeFieldType": "str",
+        "afterFieldType": "str",
+        "includeFieldType": "str",
+        "x": 860,
+        "y": 320,
+        "wires": [
+            [
+                "81552bb34947085a"
+            ]
+        ]
+    },
+    {
+        "id": "abd4fc032301ef9b",
+        "type": "http request",
+        "z": "ce1997a2d02a9e28",
+        "g": "0805a333ec7c7641",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://10.0.2.15:8585/api/v1/databaseSchemas",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "bearer",
+        "senderr": false,
+        "headers": [],
+        "x": 1170,
+        "y": 320,
+        "wires": [
+            [
+                "e1ba41b9b8aa7e5e"
+            ]
+        ]
+    },
+    {
+        "id": "f346298730c94f22",
+        "type": "test inject",
+        "z": "ce1997a2d02a9e28",
+        "g": "705938859e157b32",
+        "name": "",
+        "onstart": false,
+        "tests": "return [{\n\tlabel: 'test 1',\n\tassert: function (msg) {\n        // msg.result === msg.expected;\n\t\tshould(msg.result).is.exactly(msg.expected);\n\t}\n}];",
+        "x": 540,
+        "y": 600,
+        "wires": [
+            [
+                "1337023f9c3b8185"
+            ]
+        ]
+    },
+    {
+        "id": "ad198d815c373680",
+        "type": "complete",
+        "z": "ce1997a2d02a9e28",
+        "g": "705938859e157b32",
+        "name": "",
+        "scope": [
+            "f346298730c94f22"
+        ],
+        "uncaught": false,
+        "x": 550,
+        "y": 700,
+        "wires": [
+            [
+                "1a94272a94b8d3d5"
+            ]
+        ]
+    },
+    {
+        "id": "9c9e87ffefe79335",
+        "type": "json",
+        "z": "ce1997a2d02a9e28",
+        "g": "705938859e157b32",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 810,
+        "y": 840,
+        "wires": [
+            [
+                "d860f991e49e3b99"
+            ]
+        ]
+    },
+    {
+        "id": "ff3ed936fef9b6d5",
+        "type": "assert",
+        "z": "ce1997a2d02a9e28",
+        "g": "705938859e157b32",
+        "name": "",
+        "x": 1430,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9eb85af5907f935f",
+        "type": "comment",
+        "z": "ce1997a2d02a9e28",
+        "g": "705938859e157b32",
+        "name": "Actual result from openmetadata node",
+        "info": "",
+        "x": 830,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "7443dd6e5c3a3f81",
+        "type": "json",
+        "z": "ce1997a2d02a9e28",
+        "g": "705938859e157b32",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 1190,
+        "y": 840,
+        "wires": [
+            [
+                "23b528396d5886f9"
+            ]
+        ]
+    },
+    {
+        "id": "8142c3f1e21d8488",
+        "type": "comment",
+        "z": "ce1997a2d02a9e28",
+        "g": "705938859e157b32",
+        "name": "Expected result from REST API",
+        "info": "",
+        "x": 1190,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "d860f991e49e3b99",
+        "type": "change",
+        "z": "ce1997a2d02a9e28",
+        "g": "705938859e157b32",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "result",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 840,
+        "y": 880,
+        "wires": [
+            [
+                "71a090016ad4c596"
+            ]
+        ]
+    },
+    {
+        "id": "23b528396d5886f9",
+        "type": "change",
+        "z": "ce1997a2d02a9e28",
+        "g": "705938859e157b32",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "expected",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1230,
+        "y": 880,
+        "wires": [
+            [
+                "ff3ed936fef9b6d5"
+            ]
+        ]
+    },
+    {
+        "id": "71a090016ad4c596",
+        "type": "http request",
+        "z": "ce1997a2d02a9e28",
+        "g": "705938859e157b32",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://10.0.2.15:8585/api/v1/databaseSchemas?fields=tables%2CusageSummary%2Ctags&database=PGSpider.test1&limit=20&before={{{before}}}&include=all",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "bearer",
+        "senderr": false,
+        "headers": [],
+        "x": 1210,
+        "y": 800,
+        "wires": [
+            [
+                "7443dd6e5c3a3f81"
+            ]
+        ]
+    },
+    {
+        "id": "139ba57a2d9142f4",
+        "type": "openmetadata",
+        "z": "ce1997a2d02a9e28",
+        "g": "705938859e157b32",
+        "nodename": "",
+        "openMetadataConfig": "ed60dcee1fc8d735",
+        "resource": "list_database_schemas",
+        "showOptParams": true,
+        "q": "*",
+        "name": "PostgreSQL",
+        "id_param": "#",
+        "fqn": "postgres.test",
+        "startTs": "1",
+        "endTs": "10",
+        "index": "table_search_index",
+        "deleted": "false",
+        "from": 0,
+        "size": 10,
+        "sort_field": "_score",
+        "sort_order": "desc",
+        "track_total_hits": "false",
+        "query_filter": "",
+        "post_filter": "",
+        "fetch_source": "true",
+        "include_source_fields": "",
+        "parent": "",
+        "fields": "tables,usageSummary,tags",
+        "domain": "",
+        "service": "",
+        "database": "PGSpider.test1",
+        "disabled": "",
+        "databaseSchema": "",
+        "includeEmptyTestSuite": "true",
+        "limit": "20",
+        "before": "before",
+        "after": "",
+        "include": "all",
+        "qFieldType": "str",
+        "nameFieldType": "str",
+        "id_paramFieldType": "str",
+        "fqnFieldType": "str",
+        "startTsFieldType": "num",
+        "endTsFieldType": "num",
+        "indexFieldType": "str",
+        "deletedFieldType": "bool",
+        "fromFieldType": "num",
+        "sizeFieldType": "num",
+        "sort_fieldFieldType": "str",
+        "sort_orderFieldType": "str",
+        "track_total_hitsFieldType": "bool",
+        "query_filterFieldType": "str",
+        "post_filterFieldType": "str",
+        "fetch_sourceFieldType": "bool",
+        "include_source_fieldsFieldType": "str",
+        "parentFieldType": "str",
+        "fieldsFieldType": "str",
+        "domainFieldType": "str",
+        "serviceFieldType": "str",
+        "databaseFieldType": "str",
+        "disabledFieldType": "str",
+        "databaseSchemaFieldType": "str",
+        "includeEmptyTestSuiteFieldType": "bool",
+        "limitFieldType": "num",
+        "beforeFieldType": "msg",
+        "afterFieldType": "str",
+        "includeFieldType": "str",
+        "x": 840,
+        "y": 800,
+        "wires": [
+            [
+                "9c9e87ffefe79335"
+            ]
+        ]
+    },
+    {
+        "id": "1337023f9c3b8185",
+        "type": "openmetadata",
+        "z": "ce1997a2d02a9e28",
+        "g": "705938859e157b32",
+        "nodename": "",
+        "openMetadataConfig": "ed60dcee1fc8d735",
+        "resource": "list_database_schemas",
+        "showOptParams": true,
+        "q": "*",
+        "name": "PostgreSQL",
+        "id_param": "#",
+        "fqn": "postgres.test",
+        "startTs": "1",
+        "endTs": "10",
+        "index": "table_search_index",
+        "deleted": "false",
+        "from": 0,
+        "size": 10,
+        "sort_field": "_score",
+        "sort_order": "desc",
+        "track_total_hits": "false",
+        "query_filter": "",
+        "post_filter": "",
+        "fetch_source": "true",
+        "include_source_fields": "",
+        "parent": "",
+        "fields": "",
+        "domain": "",
+        "service": "",
+        "database": "PGSpider.test1",
+        "disabled": "",
+        "databaseSchema": "",
+        "includeEmptyTestSuite": "true",
+        "limit": "1",
+        "before": "",
+        "after": "",
+        "include": "",
+        "qFieldType": "str",
+        "nameFieldType": "str",
+        "id_paramFieldType": "str",
+        "fqnFieldType": "str",
+        "startTsFieldType": "num",
+        "endTsFieldType": "num",
+        "indexFieldType": "str",
+        "deletedFieldType": "bool",
+        "fromFieldType": "num",
+        "sizeFieldType": "num",
+        "sort_fieldFieldType": "str",
+        "sort_orderFieldType": "str",
+        "track_total_hitsFieldType": "bool",
+        "query_filterFieldType": "str",
+        "post_filterFieldType": "str",
+        "fetch_sourceFieldType": "bool",
+        "include_source_fieldsFieldType": "str",
+        "parentFieldType": "str",
+        "fieldsFieldType": "str",
+        "domainFieldType": "str",
+        "serviceFieldType": "str",
+        "databaseFieldType": "str",
+        "disabledFieldType": "str",
+        "databaseSchemaFieldType": "str",
+        "includeEmptyTestSuiteFieldType": "bool",
+        "limitFieldType": "num",
+        "beforeFieldType": "str",
+        "afterFieldType": "str",
+        "includeFieldType": "str",
+        "x": 840,
+        "y": 580,
+        "wires": [
+            [
+                "4acc891392630162"
+            ]
+        ]
+    },
+    {
+        "id": "4acc891392630162",
+        "type": "change",
+        "z": "ce1997a2d02a9e28",
+        "g": "705938859e157b32",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "after",
+                "pt": "msg",
+                "to": "payload.paging.after",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 830,
+        "y": 620,
+        "wires": [
+            [
+                "d2e3ed1356a53ffa"
+            ]
+        ]
+    },
+    {
+        "id": "d2e3ed1356a53ffa",
+        "type": "openmetadata",
+        "z": "ce1997a2d02a9e28",
+        "g": "705938859e157b32",
+        "nodename": "",
+        "openMetadataConfig": "ed60dcee1fc8d735",
+        "resource": "list_database_schemas",
+        "showOptParams": true,
+        "q": "*",
+        "name": "PostgreSQL",
+        "id_param": "#",
+        "fqn": "postgres.test",
+        "startTs": "1",
+        "endTs": "10",
+        "index": "table_search_index",
+        "deleted": "false",
+        "from": 0,
+        "size": 10,
+        "sort_field": "_score",
+        "sort_order": "desc",
+        "track_total_hits": "false",
+        "query_filter": "",
+        "post_filter": "",
+        "fetch_source": "true",
+        "include_source_fields": "",
+        "parent": "",
+        "fields": "",
+        "domain": "",
+        "service": "",
+        "database": "PGSpider.test1",
+        "disabled": "",
+        "databaseSchema": "",
+        "includeEmptyTestSuite": "true",
+        "limit": "3",
+        "before": "",
+        "after": "after",
+        "include": "",
+        "qFieldType": "str",
+        "nameFieldType": "str",
+        "id_paramFieldType": "str",
+        "fqnFieldType": "str",
+        "startTsFieldType": "num",
+        "endTsFieldType": "num",
+        "indexFieldType": "str",
+        "deletedFieldType": "bool",
+        "fromFieldType": "num",
+        "sizeFieldType": "num",
+        "sort_fieldFieldType": "str",
+        "sort_orderFieldType": "str",
+        "track_total_hitsFieldType": "bool",
+        "query_filterFieldType": "str",
+        "post_filterFieldType": "str",
+        "fetch_sourceFieldType": "bool",
+        "include_source_fieldsFieldType": "str",
+        "parentFieldType": "str",
+        "fieldsFieldType": "str",
+        "domainFieldType": "str",
+        "serviceFieldType": "str",
+        "databaseFieldType": "str",
+        "disabledFieldType": "str",
+        "databaseSchemaFieldType": "str",
+        "includeEmptyTestSuiteFieldType": "bool",
+        "limitFieldType": "num",
+        "beforeFieldType": "str",
+        "afterFieldType": "msg",
+        "includeFieldType": "str",
+        "x": 840,
+        "y": 660,
+        "wires": [
+            [
+                "44514f704be45879"
+            ]
+        ]
+    },
+    {
+        "id": "44514f704be45879",
+        "type": "change",
+        "z": "ce1997a2d02a9e28",
+        "g": "705938859e157b32",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "before",
+                "pt": "msg",
+                "to": "payload.paging.before",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 840,
+        "y": 700,
+        "wires": [
+            [
+                "139ba57a2d9142f4"
+            ]
+        ]
+    },
+    {
+        "id": "ba8d46ddb9da0749",
+        "type": "comment",
+        "z": "ce1997a2d02a9e28",
+        "g": "705938859e157b32",
+        "name": "TC18: List all database schemas with more fields",
+        "info": " 1. Input: \n - fields: \"tables,usageSummary,tags\"\n - database: \"PGSpider.test1\"\n - limit: 20\n - before: before 2nd element (get value from another openmetadata node)\n - include: \"all\"\n\n 2. Expected: Return all database schemas on specified database (max 20 records)",
+        "x": 400,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "1a94272a94b8d3d5",
+        "type": "test inject",
+        "z": "ce1997a2d02a9e28",
+        "g": "33bd7316d6cd1b5b",
+        "name": "",
+        "onstart": false,
+        "tests": "return [{\n\tlabel: 'test 1',\n\tassert: function (msg) {\n        // msg.result === msg.expected;\n\t\tshould(msg.result).is.exactly(msg.expected);\n\t}\n}];",
+        "x": 540,
+        "y": 1140,
+        "wires": [
+            [
+                "ed5013ce51b06b6a"
+            ]
+        ]
+    },
+    {
+        "id": "fc3003a946c5ecfd",
+        "type": "assert",
+        "z": "ce1997a2d02a9e28",
+        "g": "33bd7316d6cd1b5b",
+        "name": "",
+        "x": 1390,
+        "y": 1200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "74ca88dbe31980a1",
+        "type": "comment",
+        "z": "ce1997a2d02a9e28",
+        "g": "33bd7316d6cd1b5b",
+        "name": "Actual result from openmetadata node",
+        "info": "",
+        "x": 930,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "8e6a9587fa2f6b90",
+        "type": "complete",
+        "z": "ce1997a2d02a9e28",
+        "g": "33bd7316d6cd1b5b",
+        "name": "",
+        "scope": [
+            "1a94272a94b8d3d5"
+        ],
+        "uncaught": false,
+        "x": 550,
+        "y": 1240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4b1372f1ffddbed2",
+        "type": "comment",
+        "z": "ce1997a2d02a9e28",
+        "g": "33bd7316d6cd1b5b",
+        "name": "Expected result from REST API",
+        "info": "",
+        "x": 1230,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "45aaa7b66810b8d6",
+        "type": "change",
+        "z": "ce1997a2d02a9e28",
+        "g": "33bd7316d6cd1b5b",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "result",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 1320,
+        "wires": [
+            [
+                "98d959dfecef0834"
+            ]
+        ]
+    },
+    {
+        "id": "98d959dfecef0834",
+        "type": "change",
+        "z": "ce1997a2d02a9e28",
+        "g": "33bd7316d6cd1b5b",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "expected",
+                "pt": "msg",
+                "to": "API error 400: Invalid field name example",
+                "tot": "str",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1190,
+        "y": 1260,
+        "wires": [
+            [
+                "fc3003a946c5ecfd"
+            ]
+        ]
+    },
+    {
+        "id": "ed5013ce51b06b6a",
+        "type": "openmetadata",
+        "z": "ce1997a2d02a9e28",
+        "g": "33bd7316d6cd1b5b",
+        "nodename": "",
+        "openMetadataConfig": "ed60dcee1fc8d735",
+        "resource": "list_database_schemas",
+        "showOptParams": true,
+        "q": "*",
+        "name": "PostgreSQL",
+        "id_param": "#",
+        "fqn": "postgres.test",
+        "startTs": "1",
+        "endTs": "10",
+        "index": "table_search_index",
+        "deleted": "false",
+        "from": 0,
+        "size": 10,
+        "sort_field": "_score",
+        "sort_order": "desc",
+        "track_total_hits": "false",
+        "query_filter": "",
+        "post_filter": "",
+        "fetch_source": "true",
+        "include_source_fields": "",
+        "parent": "",
+        "fields": "example",
+        "domain": "",
+        "service": "",
+        "database": "",
+        "disabled": "",
+        "databaseSchema": "",
+        "includeEmptyTestSuite": "true",
+        "limit": "",
+        "before": "",
+        "after": "",
+        "include": "",
+        "qFieldType": "str",
+        "nameFieldType": "str",
+        "id_paramFieldType": "str",
+        "fqnFieldType": "str",
+        "startTsFieldType": "num",
+        "endTsFieldType": "num",
+        "indexFieldType": "str",
+        "deletedFieldType": "bool",
+        "fromFieldType": "num",
+        "sizeFieldType": "num",
+        "sort_fieldFieldType": "str",
+        "sort_orderFieldType": "str",
+        "track_total_hitsFieldType": "bool",
+        "query_filterFieldType": "str",
+        "post_filterFieldType": "str",
+        "fetch_sourceFieldType": "bool",
+        "include_source_fieldsFieldType": "str",
+        "parentFieldType": "str",
+        "fieldsFieldType": "str",
+        "domainFieldType": "str",
+        "serviceFieldType": "str",
+        "databaseFieldType": "str",
+        "disabledFieldType": "str",
+        "databaseSchemaFieldType": "str",
+        "includeEmptyTestSuiteFieldType": "bool",
+        "limitFieldType": "num",
+        "beforeFieldType": "str",
+        "afterFieldType": "str",
+        "includeFieldType": "str",
+        "x": 860,
+        "y": 1180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "de79fdb99f3373f1",
+        "type": "comment",
+        "z": "ce1997a2d02a9e28",
+        "g": "33bd7316d6cd1b5b",
+        "name": "TC19: List all database schemas with fields not support",
+        "info": " 1. Input: \n - fields: \"example\"\n\n 2. Expected: Show error message\nAPI error 400: Invalid field name example",
+        "x": 420,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "a23c613f39a2dd64",
+        "type": "catch",
+        "z": "ce1997a2d02a9e28",
+        "g": "33bd7316d6cd1b5b",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 840,
+        "y": 1240,
+        "wires": [
+            [
+                "3427e66485227804"
+            ]
+        ]
+    },
+    {
+        "id": "3427e66485227804",
+        "type": "function",
+        "z": "ce1997a2d02a9e28",
+        "g": "33bd7316d6cd1b5b",
+        "name": "get error message",
+        "func": "msg.payload = msg.error.message;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 1280,
+        "wires": [
+            [
+                "45aaa7b66810b8d6"
+            ]
+        ]
+    },
+    {
+        "id": "f09fb2793562542e",
+        "type": "inject",
+        "z": "ce1997a2d02a9e28",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 280,
+        "wires": [
+            [
+                "878bf694683a8c77"
+            ]
+        ]
+    },
+    {
+        "id": "ed60dcee1fc8d735",
+        "type": "openMetadataConfig",
+        "name": "token",
+        "endpoint": "http://10.0.2.15:8585/api/v1/",
+        "endpointFieldType": "str",
+        "user": "",
+        "userFieldType": "str",
+        "password": "",
+        "passwordFieldType": "str",
+        "tokenInput": "eyJraWQiOiJHYjM4OWEtOWY3Ni1nZGpzLWE5MmotMDI0MmJrOTQzNTYiLCJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJvcGVuLW1ldGFkYXRhLm9yZyIsInN1YiI6ImluZ2VzdGlvbi1ib3QiLCJlbWFpbCI6ImluZ2VzdGlvbi1ib3RAb3Blbm1ldGFkYXRhLm9yZyIsImlzQm90Ijp0cnVlLCJ0b2tlblR5cGUiOiJCT1QiLCJpYXQiOjE3MDI5NTM1MTYsImV4cCI6bnVsbH0.ysLDuWqsA8TA5TqwPp0cm8kLu0yQc-RbYBMyMGSY-JCtgR1zRAKpjhAczzFcMHQgXbCGtoXZGE4-OgWDXBoHFFeUXlYxCOFXJOz6K3xPgWM0u6OM0xRYAVGzqpWPzZDO0Wgg5dEV_j86pjCYq4EOuLwGHXhKoFwIi_ezwj8jeUBsmLy0SnaHhE1T4u_hcoikNOVOwpsNq7k9EJigLuIvftfZJacWAzAsNJkwVQymdNNufimUsI4CeZYIowgpYQV2EAoxOBOrnUUeyBx49nmAJAMqbqIzl_rP8KW1EL---Q_mYaHL1o0Qc06JufkpTf3Ir5--CnVZZjEyfYQjJI0jCg",
+        "tokenFieldType": "str",
+        "token": "",
+        "proxy": "",
+        "proxyFieldType": "str",
+        "noproxy": true
+    }
+]

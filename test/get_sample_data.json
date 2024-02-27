@@ -1,0 +1,783 @@
+[
+    {
+        "id": "579b1f0e6290fca5",
+        "type": "tab",
+        "label": "get_sample_data",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b17b23e9d0a136d5",
+        "type": "group",
+        "z": "579b1f0e6290fca5",
+        "name": "",
+        "style": {
+            "stroke": "#0070c0",
+            "label": true
+        },
+        "nodes": [
+            "8c42be8f1b94f8b8",
+            "9af3e1ba740dd809",
+            "bd05629935a23e48",
+            "3e0a9b94b3f3761f",
+            "77b4f40ee354b6e4",
+            "06cae4ab6ad44eeb",
+            "bcaad9c6c4fb7e47",
+            "2c6418981698cb03",
+            "691339cc0e1bb00c",
+            "bd41ea19e165403b",
+            "cc2d7a6b4fe10f02",
+            "d1b7ead836718351",
+            "026278eec768dd13",
+            "43e5c4a7d334d033",
+            "f2f5aec82f06334f",
+            "45ab4cdb7f045075"
+        ],
+        "x": 234,
+        "y": 139,
+        "w": 1112,
+        "h": 382
+    },
+    {
+        "id": "08090b707942d51a",
+        "type": "group",
+        "z": "579b1f0e6290fca5",
+        "name": "",
+        "style": {
+            "stroke": "#0070c0",
+            "label": true
+        },
+        "nodes": [
+            "360ad05169227e83",
+            "a16a6a8ffa572240",
+            "eaaafd43bd336356",
+            "14b3a2b08f1b4be7",
+            "97d67152e0724106",
+            "263025c407c32987",
+            "f23f0d19900e2836",
+            "01098e412afa70c6",
+            "4741310800e8bcf6",
+            "991560215fb11a31",
+            "724ef0bdfe5a02e2"
+        ],
+        "x": 234,
+        "y": 579,
+        "w": 1112,
+        "h": 302
+    },
+    {
+        "id": "15569c8fef46f702",
+        "type": "comment",
+        "z": "579b1f0e6290fca5",
+        "name": "Test suite: Get sample data",
+        "info": "",
+        "x": 110,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "8c42be8f1b94f8b8",
+        "type": "test inject",
+        "z": "579b1f0e6290fca5",
+        "g": "b17b23e9d0a136d5",
+        "name": "",
+        "onstart": false,
+        "tests": "return [{\n\tlabel: 'test 1',\n\tassert: function (msg) {\n\t\tshould(msg.result).is.exactly(msg.expected);\n\t}\n}];",
+        "x": 400,
+        "y": 260,
+        "wires": [
+            [
+                "f2f5aec82f06334f"
+            ]
+        ]
+    },
+    {
+        "id": "9af3e1ba740dd809",
+        "type": "json",
+        "z": "579b1f0e6290fca5",
+        "g": "b17b23e9d0a136d5",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 710,
+        "y": 440,
+        "wires": [
+            [
+                "d1b7ead836718351"
+            ]
+        ]
+    },
+    {
+        "id": "bd05629935a23e48",
+        "type": "assert",
+        "z": "579b1f0e6290fca5",
+        "g": "b17b23e9d0a136d5",
+        "name": "",
+        "x": 1270,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3e0a9b94b3f3761f",
+        "type": "comment",
+        "z": "579b1f0e6290fca5",
+        "g": "b17b23e9d0a136d5",
+        "name": "Actual result from openmetadata node",
+        "info": "",
+        "x": 750,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "77b4f40ee354b6e4",
+        "type": "complete",
+        "z": "579b1f0e6290fca5",
+        "g": "b17b23e9d0a136d5",
+        "name": "",
+        "scope": [
+            "8c42be8f1b94f8b8"
+        ],
+        "uncaught": false,
+        "x": 430,
+        "y": 400,
+        "wires": [
+            [
+                "bcaad9c6c4fb7e47"
+            ]
+        ]
+    },
+    {
+        "id": "06cae4ab6ad44eeb",
+        "type": "comment",
+        "z": "579b1f0e6290fca5",
+        "g": "b17b23e9d0a136d5",
+        "name": "TC36. Get sample data from a table",
+        "info": " 1. Input:\n - id: get value from another openmetadata node\n\n 2. Expected: Return sample data for specified table",
+        "x": 400,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "bcaad9c6c4fb7e47",
+        "type": "change",
+        "z": "579b1f0e6290fca5",
+        "g": "b17b23e9d0a136d5",
+        "name": "",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "id",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 460,
+        "wires": [
+            [
+                "360ad05169227e83"
+            ]
+        ]
+    },
+    {
+        "id": "2c6418981698cb03",
+        "type": "json",
+        "z": "579b1f0e6290fca5",
+        "g": "b17b23e9d0a136d5",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 1030,
+        "y": 440,
+        "wires": [
+            [
+                "026278eec768dd13"
+            ]
+        ]
+    },
+    {
+        "id": "691339cc0e1bb00c",
+        "type": "comment",
+        "z": "579b1f0e6290fca5",
+        "g": "b17b23e9d0a136d5",
+        "name": "Expected result from REST API",
+        "info": "",
+        "x": 1090,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "bd41ea19e165403b",
+        "type": "comment",
+        "z": "579b1f0e6290fca5",
+        "g": "b17b23e9d0a136d5",
+        "name": "Get ID param",
+        "info": "",
+        "x": 730,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "cc2d7a6b4fe10f02",
+        "type": "change",
+        "z": "579b1f0e6290fca5",
+        "g": "b17b23e9d0a136d5",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "id",
+                "pt": "msg",
+                "to": "payload.data.0.id",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 730,
+        "y": 300,
+        "wires": [
+            [
+                "45ab4cdb7f045075"
+            ]
+        ]
+    },
+    {
+        "id": "d1b7ead836718351",
+        "type": "change",
+        "z": "579b1f0e6290fca5",
+        "g": "b17b23e9d0a136d5",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "result",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 740,
+        "y": 480,
+        "wires": [
+            [
+                "43e5c4a7d334d033"
+            ]
+        ]
+    },
+    {
+        "id": "026278eec768dd13",
+        "type": "change",
+        "z": "579b1f0e6290fca5",
+        "g": "b17b23e9d0a136d5",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "expected",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1070,
+        "y": 480,
+        "wires": [
+            [
+                "bd05629935a23e48"
+            ]
+        ]
+    },
+    {
+        "id": "43e5c4a7d334d033",
+        "type": "http request",
+        "z": "579b1f0e6290fca5",
+        "g": "b17b23e9d0a136d5",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://10.0.2.15:8585/api/v1/tables/{{{id}}}/sampleData",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "bearer",
+        "senderr": false,
+        "headers": [],
+        "x": 1050,
+        "y": 400,
+        "wires": [
+            [
+                "2c6418981698cb03"
+            ]
+        ]
+    },
+    {
+        "id": "f2f5aec82f06334f",
+        "type": "openmetadata",
+        "z": "579b1f0e6290fca5",
+        "g": "b17b23e9d0a136d5",
+        "nodename": "",
+        "openMetadataConfig": "ed60dcee1fc8d735",
+        "resource": "list_tables",
+        "showOptParams": true,
+        "q": "*",
+        "name": "",
+        "id_param": "",
+        "fqn": "",
+        "startTs": "",
+        "endTs": "",
+        "index": "table_search_index",
+        "deleted": "false",
+        "from": 0,
+        "size": 10,
+        "sort_field": "_score",
+        "sort_order": "desc",
+        "track_total_hits": "false",
+        "query_filter": "",
+        "post_filter": "",
+        "fetch_source": "true",
+        "include_source_fields": "",
+        "parent": "",
+        "fields": "",
+        "domain": "",
+        "service": "",
+        "database": "",
+        "disabled": "false",
+        "databaseSchema": "",
+        "includeEmptyTestSuite": "true",
+        "limit": "",
+        "before": "",
+        "after": "",
+        "include": "",
+        "qFieldType": "str",
+        "nameFieldType": "str",
+        "id_paramFieldType": "str",
+        "fqnFieldType": "str",
+        "startTsFieldType": "num",
+        "endTsFieldType": "num",
+        "indexFieldType": "str",
+        "deletedFieldType": "bool",
+        "fromFieldType": "num",
+        "sizeFieldType": "num",
+        "sort_fieldFieldType": "str",
+        "sort_orderFieldType": "str",
+        "track_total_hitsFieldType": "bool",
+        "query_filterFieldType": "str",
+        "post_filterFieldType": "str",
+        "fetch_sourceFieldType": "bool",
+        "include_source_fieldsFieldType": "str",
+        "parentFieldType": "str",
+        "fieldsFieldType": "str",
+        "domainFieldType": "str",
+        "serviceFieldType": "str",
+        "databaseFieldType": "str",
+        "disabledFieldType": "str",
+        "databaseSchemaFieldType": "str",
+        "includeEmptyTestSuiteFieldType": "bool",
+        "limitFieldType": "num",
+        "beforeFieldType": "str",
+        "afterFieldType": "str",
+        "includeFieldType": "str",
+        "x": 740,
+        "y": 260,
+        "wires": [
+            [
+                "cc2d7a6b4fe10f02"
+            ]
+        ]
+    },
+    {
+        "id": "45ab4cdb7f045075",
+        "type": "openmetadata",
+        "z": "579b1f0e6290fca5",
+        "g": "b17b23e9d0a136d5",
+        "nodename": "",
+        "openMetadataConfig": "ed60dcee1fc8d735",
+        "resource": "get_sample_data",
+        "showOptParams": true,
+        "q": "*",
+        "name": "",
+        "id_param": "id",
+        "fqn": "",
+        "startTs": "",
+        "endTs": "",
+        "index": "table_search_index",
+        "deleted": "false",
+        "from": 0,
+        "size": 10,
+        "sort_field": "_score",
+        "sort_order": "desc",
+        "track_total_hits": "false",
+        "query_filter": "",
+        "post_filter": "",
+        "fetch_source": "true",
+        "include_source_fields": "",
+        "parent": "",
+        "fields": "",
+        "domain": "",
+        "service": "",
+        "database": "",
+        "disabled": "false",
+        "databaseSchema": "",
+        "includeEmptyTestSuite": "true",
+        "limit": 10,
+        "before": "",
+        "after": "",
+        "include": "non-deleted",
+        "qFieldType": "str",
+        "nameFieldType": "str",
+        "id_paramFieldType": "msg",
+        "fqnFieldType": "str",
+        "startTsFieldType": "num",
+        "endTsFieldType": "num",
+        "indexFieldType": "str",
+        "deletedFieldType": "bool",
+        "fromFieldType": "num",
+        "sizeFieldType": "num",
+        "sort_fieldFieldType": "str",
+        "sort_orderFieldType": "str",
+        "track_total_hitsFieldType": "bool",
+        "query_filterFieldType": "str",
+        "post_filterFieldType": "str",
+        "fetch_sourceFieldType": "bool",
+        "include_source_fieldsFieldType": "str",
+        "parentFieldType": "str",
+        "fieldsFieldType": "str",
+        "domainFieldType": "str",
+        "serviceFieldType": "str",
+        "databaseFieldType": "str",
+        "disabledFieldType": "str",
+        "databaseSchemaFieldType": "str",
+        "includeEmptyTestSuiteFieldType": "bool",
+        "limitFieldType": "num",
+        "beforeFieldType": "str",
+        "afterFieldType": "str",
+        "includeFieldType": "str",
+        "x": 740,
+        "y": 400,
+        "wires": [
+            [
+                "9af3e1ba740dd809"
+            ]
+        ]
+    },
+    {
+        "id": "360ad05169227e83",
+        "type": "test inject",
+        "z": "579b1f0e6290fca5",
+        "g": "08090b707942d51a",
+        "name": "",
+        "onstart": false,
+        "tests": "return [{\n\tlabel: 'test 1',\n\tassert: function (msg) {\n\t\tshould(msg.result).is.exactly(msg.expected);\n\t}\n}];",
+        "x": 400,
+        "y": 720,
+        "wires": [
+            [
+                "724ef0bdfe5a02e2"
+            ]
+        ]
+    },
+    {
+        "id": "a16a6a8ffa572240",
+        "type": "assert",
+        "z": "579b1f0e6290fca5",
+        "g": "08090b707942d51a",
+        "name": "",
+        "x": 1270,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "eaaafd43bd336356",
+        "type": "change",
+        "z": "579b1f0e6290fca5",
+        "g": "08090b707942d51a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "result",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 700,
+        "y": 840,
+        "wires": [
+            [
+                "01098e412afa70c6"
+            ]
+        ]
+    },
+    {
+        "id": "14b3a2b08f1b4be7",
+        "type": "comment",
+        "z": "579b1f0e6290fca5",
+        "g": "08090b707942d51a",
+        "name": "Actual result from openmetadata node",
+        "info": "",
+        "x": 750,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "97d67152e0724106",
+        "type": "complete",
+        "z": "579b1f0e6290fca5",
+        "g": "08090b707942d51a",
+        "name": "",
+        "scope": [
+            "360ad05169227e83"
+        ],
+        "uncaught": false,
+        "x": 410,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "263025c407c32987",
+        "type": "comment",
+        "z": "579b1f0e6290fca5",
+        "g": "08090b707942d51a",
+        "name": "TC37. Get sample data from a table with id blank",
+        "info": " 1. Input: N/A\n\n 2. Expected: Show error message\nAPI error 500: undefined",
+        "x": 440,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "f23f0d19900e2836",
+        "type": "function",
+        "z": "579b1f0e6290fca5",
+        "g": "08090b707942d51a",
+        "name": "get error message",
+        "func": "msg.payload = msg.error.message;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 800,
+        "wires": [
+            [
+                "eaaafd43bd336356"
+            ]
+        ]
+    },
+    {
+        "id": "01098e412afa70c6",
+        "type": "change",
+        "z": "579b1f0e6290fca5",
+        "g": "08090b707942d51a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "expected",
+                "pt": "msg",
+                "to": "API error 500: undefined",
+                "tot": "str",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1030,
+        "y": 780,
+        "wires": [
+            [
+                "a16a6a8ffa572240"
+            ]
+        ]
+    },
+    {
+        "id": "4741310800e8bcf6",
+        "type": "comment",
+        "z": "579b1f0e6290fca5",
+        "g": "08090b707942d51a",
+        "name": "Expected result",
+        "info": "",
+        "x": 1020,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "991560215fb11a31",
+        "type": "catch",
+        "z": "579b1f0e6290fca5",
+        "g": "08090b707942d51a",
+        "name": "",
+        "scope": [
+            "724ef0bdfe5a02e2"
+        ],
+        "uncaught": false,
+        "x": 670,
+        "y": 760,
+        "wires": [
+            [
+                "f23f0d19900e2836"
+            ]
+        ]
+    },
+    {
+        "id": "724ef0bdfe5a02e2",
+        "type": "openmetadata",
+        "z": "579b1f0e6290fca5",
+        "g": "08090b707942d51a",
+        "nodename": "",
+        "openMetadataConfig": "ed60dcee1fc8d735",
+        "resource": "get_sample_data",
+        "showOptParams": true,
+        "q": "*",
+        "name": "",
+        "id_param": "",
+        "fqn": "",
+        "startTs": "",
+        "endTs": "",
+        "index": "table_search_index",
+        "deleted": "false",
+        "from": 0,
+        "size": 10,
+        "sort_field": "_score",
+        "sort_order": "desc",
+        "track_total_hits": "false",
+        "query_filter": "",
+        "post_filter": "",
+        "fetch_source": "true",
+        "include_source_fields": "",
+        "parent": "",
+        "fields": "",
+        "domain": "",
+        "service": "",
+        "database": "",
+        "disabled": "false",
+        "databaseSchema": "",
+        "includeEmptyTestSuite": "true",
+        "limit": 10,
+        "before": "",
+        "after": "",
+        "include": "non-deleted",
+        "qFieldType": "str",
+        "nameFieldType": "str",
+        "id_paramFieldType": "str",
+        "fqnFieldType": "str",
+        "startTsFieldType": "num",
+        "endTsFieldType": "num",
+        "indexFieldType": "str",
+        "deletedFieldType": "bool",
+        "fromFieldType": "num",
+        "sizeFieldType": "num",
+        "sort_fieldFieldType": "str",
+        "sort_orderFieldType": "str",
+        "track_total_hitsFieldType": "bool",
+        "query_filterFieldType": "str",
+        "post_filterFieldType": "str",
+        "fetch_sourceFieldType": "bool",
+        "include_source_fieldsFieldType": "str",
+        "parentFieldType": "str",
+        "fieldsFieldType": "str",
+        "domainFieldType": "str",
+        "serviceFieldType": "str",
+        "databaseFieldType": "str",
+        "disabledFieldType": "str",
+        "databaseSchemaFieldType": "str",
+        "includeEmptyTestSuiteFieldType": "bool",
+        "limitFieldType": "num",
+        "beforeFieldType": "str",
+        "afterFieldType": "str",
+        "includeFieldType": "str",
+        "x": 700,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a09787402ca3c695",
+        "type": "inject",
+        "z": "579b1f0e6290fca5",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 180,
+        "wires": [
+            [
+                "8c42be8f1b94f8b8"
+            ]
+        ]
+    },
+    {
+        "id": "ed60dcee1fc8d735",
+        "type": "openMetadataConfig",
+        "name": "token",
+        "endpoint": "http://10.0.2.15:8585/api/v1/",
+        "endpointFieldType": "str",
+        "user": "",
+        "userFieldType": "str",
+        "password": "",
+        "passwordFieldType": "str",
+        "tokenInput": "eyJraWQiOiJHYjM4OWEtOWY3Ni1nZGpzLWE5MmotMDI0MmJrOTQzNTYiLCJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJvcGVuLW1ldGFkYXRhLm9yZyIsInN1YiI6ImluZ2VzdGlvbi1ib3QiLCJlbWFpbCI6ImluZ2VzdGlvbi1ib3RAb3Blbm1ldGFkYXRhLm9yZyIsImlzQm90Ijp0cnVlLCJ0b2tlblR5cGUiOiJCT1QiLCJpYXQiOjE3MDI5NTM1MTYsImV4cCI6bnVsbH0.ysLDuWqsA8TA5TqwPp0cm8kLu0yQc-RbYBMyMGSY-JCtgR1zRAKpjhAczzFcMHQgXbCGtoXZGE4-OgWDXBoHFFeUXlYxCOFXJOz6K3xPgWM0u6OM0xRYAVGzqpWPzZDO0Wgg5dEV_j86pjCYq4EOuLwGHXhKoFwIi_ezwj8jeUBsmLy0SnaHhE1T4u_hcoikNOVOwpsNq7k9EJigLuIvftfZJacWAzAsNJkwVQymdNNufimUsI4CeZYIowgpYQV2EAoxOBOrnUUeyBx49nmAJAMqbqIzl_rP8KW1EL---Q_mYaHL1o0Qc06JufkpTf3Ir5--CnVZZjEyfYQjJI0jCg",
+        "tokenFieldType": "str",
+        "token": "",
+        "proxy": "",
+        "proxyFieldType": "str",
+        "noproxy": true
+    }
+]

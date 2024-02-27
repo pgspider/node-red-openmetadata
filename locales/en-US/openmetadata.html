@@ -1,0 +1,68 @@
+<script type="text/x-red" data-help-name="openMetadataConfig">
+    <p>OpenMetadata Configuration Node contains information to connect to OpenMetadata server.</p>
+	<h3>Inputs</h3>
+		<dt>Node Name</dt>
+		<p>Name of OpenMetadata Config node.</p>
+		<dt>Endpoint</dt>
+		<p>Endpoint of OpenMetadata server.</p>
+		<dt>User, Password, Token</dt>
+		<p>Necessary parameters  to login to OpenMetadata server.</p>
+		<dt>Proxy, No proxy</dt>
+		<p>Options for curl to access web resource.</p>
+
+	<h3>Details</h3>
+		<p>Either user & password or token is required.</p>
+		<ul>
+			<li>If user & password is specified, OpenMetadata node calls Login API to get token. </li>
+			<li>If token is specified, OpenMetadata node uses it without calling Login API.</li>
+			<li>If both user, password and token are entered, token is prioritized.</li>
+		</ul>
+		<p>Proxy/No proxy: The proxy field is hidden if "no proxy" option is checked.</p>
+		<ul>
+			<li>If No proxy is checked, the proxy is not used. </li>
+			<li>If No proxy is not checked and proxy is specified, the proxy is used. </li>
+			<li>If no proxy is not checked and proxy is not specified, the proxy value follows OS' setting (environment variable).</li>
+		</ul>
+</script>
+
+<script type="text/x-red" data-help-name="openmetadata">
+    <p>node-red-openmetadata is a Node-RED node to request to OpenMetadata by Rest API.</p>
+	<h3>Inputs</h3>
+		<dt>Server</dt>
+		<p>Name of openmetadataConfig node which contains configuration information to connect to OpenMetadata server.</p>
+		<dt>Resource</dt>
+		<p>The list of supported OpenMetadata API.</p>
+		<dt>Show optional params</dt>
+		<p>Checkbox to show optional API parameters of resource or not.</p>
+
+	<h3>Outputs</h3>
+		<p>The JSON response which is returned from OpenMetadata server is provided in <code>msg.payload</code>.</p>
+
+	<h3>Details</h3>
+		<p>There are 14 resources which are supported as following: </p>
+		<ul>
+			<li>Search entities</li>
+			<li>List database services</li>
+			<li>Get database services by name</li>
+			<li>Get a database service</li>
+			<li>List databases</li>
+			<li>Get a database by Id</li>
+			<li>List database schemas</li>
+			<li>Get a schema by Id</li>
+			<li>List tags</li>
+			<li>List tables</li>
+			<li>List of column profiles</li>
+			<li>List of table profiles</li>
+			<li>Get a table by Id</li>
+			<li>Get sample data</li>
+		  </ul>
+		<p>Show optional params checkbox is checked by default. If it is checked, all required and optional API parameters are shown. 
+			If not checked, only required parameters are shown. When switching API or re-opening the node, the status (checked or not checked) of checkbox is kept.</p>
+		<p>When switching API, the corresponding parameters are shown.</p>
+		<p>User must enter required parameters.</p>
+
+	<h3>References</h3>
+		<ul>
+			<li><a href="https://docs.open-metadata.org/swagger.html#">Openmetadata API docs</a> - full description about supported APIs</li>
+		</ul>
+</script>

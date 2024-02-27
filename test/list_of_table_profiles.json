@@ -1,0 +1,671 @@
+[
+    {
+        "id": "326be4f9ac39e312",
+        "type": "tab",
+        "label": "list_of_table_profiles",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "69418e2e26e398c9",
+        "type": "group",
+        "z": "326be4f9ac39e312",
+        "name": "",
+        "style": {
+            "stroke": "#0070c0",
+            "label": true
+        },
+        "nodes": [
+            "0ded8ca95f2ec1c8",
+            "267d921c95d3b2eb",
+            "1a5bb8e076de917c",
+            "ebd8bb724daf5d7d",
+            "a46805b193cc8cb4",
+            "598cca533f095efa",
+            "839b31c9d01ef1fb",
+            "b46121ac3cd0a34c",
+            "fb356ff65e3f8f47",
+            "f7e81cb4ac6e2ad3",
+            "1c9e2073793f991d"
+        ],
+        "x": 294,
+        "y": 159,
+        "w": 1112,
+        "h": 302
+    },
+    {
+        "id": "a62112864b4c8eb5",
+        "type": "group",
+        "z": "326be4f9ac39e312",
+        "name": "",
+        "style": {
+            "stroke": "#0070c0",
+            "label": true
+        },
+        "nodes": [
+            "100e9402b36b8c0a",
+            "9ddcba72e4d998d9",
+            "db639265029dab3f",
+            "d1e2ddcbdc64d2e3",
+            "128d0c2db27488a2",
+            "8023b14589f13ebb",
+            "86532eef0248da07",
+            "648fe0b9470d1681",
+            "248106af81716be4",
+            "e6fe50b0454926ee",
+            "7f4bc412708b8c9f",
+            "97933ba1a62aeb19",
+            "26b2e596f65b6e28"
+        ],
+        "x": 294,
+        "y": 559,
+        "w": 1132,
+        "h": 262
+    },
+    {
+        "id": "4b93f4de2bae4fea",
+        "type": "comment",
+        "z": "326be4f9ac39e312",
+        "name": "Test suite: List of table profiles",
+        "info": "",
+        "x": 120,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "0ded8ca95f2ec1c8",
+        "type": "test inject",
+        "z": "326be4f9ac39e312",
+        "g": "69418e2e26e398c9",
+        "name": "",
+        "onstart": false,
+        "tests": "return [{\n\tlabel: 'test 1',\n\tassert: function (msg) {\n\t\tshould(msg.result).is.exactly(msg.expected);\n\t}\n}];",
+        "x": 460,
+        "y": 300,
+        "wires": [
+            [
+                "1c9e2073793f991d"
+            ]
+        ]
+    },
+    {
+        "id": "267d921c95d3b2eb",
+        "type": "assert",
+        "z": "326be4f9ac39e312",
+        "g": "69418e2e26e398c9",
+        "name": "",
+        "x": 1330,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1a5bb8e076de917c",
+        "type": "change",
+        "z": "326be4f9ac39e312",
+        "g": "69418e2e26e398c9",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "result",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 420,
+        "wires": [
+            [
+                "b46121ac3cd0a34c"
+            ]
+        ]
+    },
+    {
+        "id": "ebd8bb724daf5d7d",
+        "type": "comment",
+        "z": "326be4f9ac39e312",
+        "g": "69418e2e26e398c9",
+        "name": "Actual result from openmetadata node",
+        "info": "",
+        "x": 810,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "a46805b193cc8cb4",
+        "type": "complete",
+        "z": "326be4f9ac39e312",
+        "g": "69418e2e26e398c9",
+        "name": "",
+        "scope": [
+            "0ded8ca95f2ec1c8"
+        ],
+        "uncaught": false,
+        "x": 470,
+        "y": 400,
+        "wires": [
+            [
+                "e6fe50b0454926ee"
+            ]
+        ]
+    },
+    {
+        "id": "598cca533f095efa",
+        "type": "comment",
+        "z": "326be4f9ac39e312",
+        "g": "69418e2e26e398c9",
+        "name": "TC31. Get list table profiles with default value",
+        "info": " 1. Input: N/A\n\n 2. Expected: Show message error\nAPI error 500: undefined",
+        "x": 490,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "839b31c9d01ef1fb",
+        "type": "function",
+        "z": "326be4f9ac39e312",
+        "g": "69418e2e26e398c9",
+        "name": "get error message",
+        "func": "msg.payload = msg.error.message;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 380,
+        "wires": [
+            [
+                "1a5bb8e076de917c"
+            ]
+        ]
+    },
+    {
+        "id": "b46121ac3cd0a34c",
+        "type": "change",
+        "z": "326be4f9ac39e312",
+        "g": "69418e2e26e398c9",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "expected",
+                "pt": "msg",
+                "to": "API error 500: undefined",
+                "tot": "str",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1090,
+        "y": 360,
+        "wires": [
+            [
+                "267d921c95d3b2eb"
+            ]
+        ]
+    },
+    {
+        "id": "fb356ff65e3f8f47",
+        "type": "comment",
+        "z": "326be4f9ac39e312",
+        "g": "69418e2e26e398c9",
+        "name": "Expected result",
+        "info": "",
+        "x": 1080,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "f7e81cb4ac6e2ad3",
+        "type": "catch",
+        "z": "326be4f9ac39e312",
+        "g": "69418e2e26e398c9",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 740,
+        "y": 340,
+        "wires": [
+            [
+                "839b31c9d01ef1fb"
+            ]
+        ]
+    },
+    {
+        "id": "1c9e2073793f991d",
+        "type": "openmetadata",
+        "z": "326be4f9ac39e312",
+        "g": "69418e2e26e398c9",
+        "nodename": "",
+        "openMetadataConfig": "ed60dcee1fc8d735",
+        "resource": "list_of_table_profiles",
+        "showOptParams": true,
+        "q": "*",
+        "name": "",
+        "id_param": "",
+        "fqn": "",
+        "startTs": "",
+        "endTs": "",
+        "index": "table_search_index",
+        "deleted": "false",
+        "from": 0,
+        "size": 10,
+        "sort_field": "_score",
+        "sort_order": "desc",
+        "track_total_hits": "false",
+        "query_filter": "",
+        "post_filter": "",
+        "fetch_source": "true",
+        "include_source_fields": "",
+        "parent": "",
+        "fields": "",
+        "domain": "",
+        "service": "",
+        "database": "",
+        "disabled": "false",
+        "databaseSchema": "",
+        "includeEmptyTestSuite": "true",
+        "limit": 10,
+        "before": "",
+        "after": "",
+        "include": "non-deleted",
+        "qFieldType": "str",
+        "nameFieldType": "str",
+        "id_paramFieldType": "str",
+        "fqnFieldType": "str",
+        "startTsFieldType": "num",
+        "endTsFieldType": "num",
+        "indexFieldType": "str",
+        "deletedFieldType": "bool",
+        "fromFieldType": "num",
+        "sizeFieldType": "num",
+        "sort_fieldFieldType": "str",
+        "sort_orderFieldType": "str",
+        "track_total_hitsFieldType": "bool",
+        "query_filterFieldType": "str",
+        "post_filterFieldType": "str",
+        "fetch_sourceFieldType": "bool",
+        "include_source_fieldsFieldType": "str",
+        "parentFieldType": "str",
+        "fieldsFieldType": "str",
+        "domainFieldType": "str",
+        "serviceFieldType": "str",
+        "databaseFieldType": "str",
+        "disabledFieldType": "str",
+        "databaseSchemaFieldType": "str",
+        "includeEmptyTestSuiteFieldType": "bool",
+        "limitFieldType": "num",
+        "beforeFieldType": "str",
+        "afterFieldType": "str",
+        "includeFieldType": "str",
+        "x": 760,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "100e9402b36b8c0a",
+        "type": "json",
+        "z": "326be4f9ac39e312",
+        "g": "a62112864b4c8eb5",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 750,
+        "y": 720,
+        "wires": [
+            [
+                "9ddcba72e4d998d9"
+            ]
+        ]
+    },
+    {
+        "id": "9ddcba72e4d998d9",
+        "type": "change",
+        "z": "326be4f9ac39e312",
+        "g": "a62112864b4c8eb5",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "result",
+                "pt": "msg",
+                "to": "msg.payload",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 760,
+        "wires": [
+            [
+                "26b2e596f65b6e28"
+            ]
+        ]
+    },
+    {
+        "id": "db639265029dab3f",
+        "type": "json",
+        "z": "326be4f9ac39e312",
+        "g": "a62112864b4c8eb5",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1070,
+        "y": 720,
+        "wires": [
+            [
+                "d1e2ddcbdc64d2e3"
+            ]
+        ]
+    },
+    {
+        "id": "d1e2ddcbdc64d2e3",
+        "type": "change",
+        "z": "326be4f9ac39e312",
+        "g": "a62112864b4c8eb5",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "expected",
+                "pt": "msg",
+                "to": "msg.payload",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1110,
+        "y": 760,
+        "wires": [
+            [
+                "128d0c2db27488a2"
+            ]
+        ]
+    },
+    {
+        "id": "128d0c2db27488a2",
+        "type": "assert",
+        "z": "326be4f9ac39e312",
+        "g": "a62112864b4c8eb5",
+        "name": "",
+        "x": 1350,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8023b14589f13ebb",
+        "type": "comment",
+        "z": "326be4f9ac39e312",
+        "g": "a62112864b4c8eb5",
+        "name": "Actual result from openmetadata node",
+        "info": "",
+        "x": 770,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "86532eef0248da07",
+        "type": "comment",
+        "z": "326be4f9ac39e312",
+        "g": "a62112864b4c8eb5",
+        "name": "Expected result from REST API",
+        "info": "",
+        "x": 1110,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "648fe0b9470d1681",
+        "type": "complete",
+        "z": "326be4f9ac39e312",
+        "g": "a62112864b4c8eb5",
+        "name": "",
+        "scope": [
+            "778b6870a57d9eb3"
+        ],
+        "uncaught": false,
+        "x": 510,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "248106af81716be4",
+        "type": "comment",
+        "z": "326be4f9ac39e312",
+        "g": "a62112864b4c8eb5",
+        "name": "TC32. Get list table profiles when required field input",
+        "info": " 1. Input: default value\n - fqn: \"PostgreSQL.postgres.public.ptable1\"\n - startTs: 1003232980466\n - endTs: 1803232980466\n\n 2. Expected: Get a list of all the table profiles for the given table fqn.",
+        "x": 510,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "e6fe50b0454926ee",
+        "type": "test inject",
+        "z": "326be4f9ac39e312",
+        "g": "a62112864b4c8eb5",
+        "name": "",
+        "onstart": false,
+        "tests": "return [{\n\tlabel: 'test 1',\n\tassert: function (msg) {\n\t\tshould(msg.result).is.exactly(msg.expected);\n\t}\n}];",
+        "x": 500,
+        "y": 660,
+        "wires": [
+            [
+                "7f4bc412708b8c9f"
+            ]
+        ]
+    },
+    {
+        "id": "7f4bc412708b8c9f",
+        "type": "openmetadata",
+        "z": "326be4f9ac39e312",
+        "g": "a62112864b4c8eb5",
+        "nodename": "",
+        "openMetadataConfig": "ed60dcee1fc8d735",
+        "resource": "list_of_table_profiles",
+        "showOptParams": true,
+        "q": "*",
+        "name": "",
+        "id_param": "",
+        "fqn": "PostgreSQL.postgres.public.ptable1",
+        "startTs": "1003232980466",
+        "endTs": "1803232980466",
+        "index": "table_search_index",
+        "deleted": "false",
+        "from": 0,
+        "size": 10,
+        "sort_field": "_score",
+        "sort_order": "desc",
+        "track_total_hits": "false",
+        "query_filter": "",
+        "post_filter": "",
+        "fetch_source": "true",
+        "include_source_fields": "",
+        "parent": "",
+        "fields": "",
+        "domain": "",
+        "service": "",
+        "database": "",
+        "disabled": "false",
+        "databaseSchema": "",
+        "includeEmptyTestSuite": "true",
+        "limit": 10,
+        "before": "",
+        "after": "",
+        "include": "non-deleted",
+        "qFieldType": "str",
+        "nameFieldType": "str",
+        "id_paramFieldType": "str",
+        "fqnFieldType": "str",
+        "startTsFieldType": "num",
+        "endTsFieldType": "num",
+        "indexFieldType": "str",
+        "deletedFieldType": "bool",
+        "fromFieldType": "num",
+        "sizeFieldType": "num",
+        "sort_fieldFieldType": "str",
+        "sort_orderFieldType": "str",
+        "track_total_hitsFieldType": "bool",
+        "query_filterFieldType": "str",
+        "post_filterFieldType": "str",
+        "fetch_sourceFieldType": "bool",
+        "include_source_fieldsFieldType": "str",
+        "parentFieldType": "str",
+        "fieldsFieldType": "str",
+        "domainFieldType": "str",
+        "serviceFieldType": "str",
+        "databaseFieldType": "str",
+        "disabledFieldType": "str",
+        "databaseSchemaFieldType": "str",
+        "includeEmptyTestSuiteFieldType": "bool",
+        "limitFieldType": "num",
+        "beforeFieldType": "str",
+        "afterFieldType": "str",
+        "includeFieldType": "str",
+        "x": 780,
+        "y": 680,
+        "wires": [
+            [
+                "100e9402b36b8c0a"
+            ]
+        ]
+    },
+    {
+        "id": "97933ba1a62aeb19",
+        "type": "http request",
+        "z": "326be4f9ac39e312",
+        "g": "a62112864b4c8eb5",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://10.0.2.15:8585/api/v1/tables/PostgreSQL.postgres.public.ptable1/tableProfile?startTs={{{startTs}}}&endTs={{{endTs}}}",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "bearer",
+        "senderr": false,
+        "headers": [],
+        "x": 1090,
+        "y": 680,
+        "wires": [
+            [
+                "db639265029dab3f"
+            ]
+        ]
+    },
+    {
+        "id": "26b2e596f65b6e28",
+        "type": "change",
+        "z": "326be4f9ac39e312",
+        "g": "a62112864b4c8eb5",
+        "name": "Set startTs, endTs value",
+        "rules": [
+            {
+                "t": "set",
+                "p": "startTs",
+                "pt": "msg",
+                "to": "1003232980466",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "endTs",
+                "pt": "msg",
+                "to": "1803232980466",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1110,
+        "y": 640,
+        "wires": [
+            [
+                "97933ba1a62aeb19"
+            ]
+        ]
+    },
+    {
+        "id": "68cb6a735dfc9349",
+        "type": "inject",
+        "z": "326be4f9ac39e312",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 240,
+        "wires": [
+            [
+                "0ded8ca95f2ec1c8"
+            ]
+        ]
+    },
+    {
+        "id": "ed60dcee1fc8d735",
+        "type": "openMetadataConfig",
+        "name": "token",
+        "endpoint": "http://10.0.2.15:8585/api/v1/",
+        "endpointFieldType": "str",
+        "user": "",
+        "userFieldType": "str",
+        "password": "",
+        "passwordFieldType": "str",
+        "tokenInput": "eyJraWQiOiJHYjM4OWEtOWY3Ni1nZGpzLWE5MmotMDI0MmJrOTQzNTYiLCJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJvcGVuLW1ldGFkYXRhLm9yZyIsInN1YiI6ImluZ2VzdGlvbi1ib3QiLCJlbWFpbCI6ImluZ2VzdGlvbi1ib3RAb3Blbm1ldGFkYXRhLm9yZyIsImlzQm90Ijp0cnVlLCJ0b2tlblR5cGUiOiJCT1QiLCJpYXQiOjE3MDI5NTM1MTYsImV4cCI6bnVsbH0.ysLDuWqsA8TA5TqwPp0cm8kLu0yQc-RbYBMyMGSY-JCtgR1zRAKpjhAczzFcMHQgXbCGtoXZGE4-OgWDXBoHFFeUXlYxCOFXJOz6K3xPgWM0u6OM0xRYAVGzqpWPzZDO0Wgg5dEV_j86pjCYq4EOuLwGHXhKoFwIi_ezwj8jeUBsmLy0SnaHhE1T4u_hcoikNOVOwpsNq7k9EJigLuIvftfZJacWAzAsNJkwVQymdNNufimUsI4CeZYIowgpYQV2EAoxOBOrnUUeyBx49nmAJAMqbqIzl_rP8KW1EL---Q_mYaHL1o0Qc06JufkpTf3Ir5--CnVZZjEyfYQjJI0jCg",
+        "tokenFieldType": "str",
+        "token": "",
+        "proxy": "",
+        "proxyFieldType": "str",
+        "noproxy": true
+    }
+]
